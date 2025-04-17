@@ -1,0 +1,32 @@
+.container-name {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+}
+
+#menu {
+  margin: 50px;
+}
+
+#menu .row .col {
+  text-align: center;
+}
+
+#menu .row .col a {
+  transition: all 0.5s ease;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+#menu .row .col a:hover {
+  transition: all 0.5s ease;
+  transform: scale(1.2);
+}
+
+#menu .row .col a img {
+  width: 10em;
+  height: 10em;
+}

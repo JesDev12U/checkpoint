@@ -1,0 +1,115 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'Minecraft';
+  src: url('../fonts/minecraft/Minecraft.ttf');
+}
+
+:root {
+  --color-principal: #52a435;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+  position: absolute;
+}
+
+.loader-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  backdrop-filter: blur(10px);
+}
+
+.navbar {
+  padding: 10px;
+  background: var(--color-principal);
+}
+
+footer {
+  background: var(--color-principal);
+}
+
+#container-principal {
+  margin-top: 120px;
+}
+
+.container-redes-sociales a {
+  font-size: 2em;
+  color: #000;
+}
+
+.container-redes-sociales a:hover {
+  color: #3b3b3b;
+}
+
+.map {
+  width: 100%;
+  height: 300px;
+}
+
+h3 {
+  text-align: center;
+  margin: 50px;
+}
+
+.wrapper-foto {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.container-foto {
+  border: 1px solid #ddd; 
+  padding: 10px;
+  text-align: center;
+}
+
+.general-container-foto {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img-users {
+  width: 150px;
+  height: 150px;
+}
+
+#foto-user-header {
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.span-errors::before {
+  content: "\f06a";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+.span-errors {
+  color: red;
+}
