@@ -1,0 +1,17 @@
+{
+    "name": "jesdev12u/checkpoint",
+    "description": "Tienda de videojuegos Checkpoint",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jesdev12u\\Checkpoint\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jesus Antonio Lopez Bandala"
+        }
+    ],
+    "require": {}
+}
