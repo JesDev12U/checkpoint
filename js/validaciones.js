@@ -23,24 +23,8 @@ function validaciones(objInputs, idButton) {
       longitud: 80,
     },
     {
-      input: "torre",
-      longitud: 5,
-    },
-    {
-      input: "departamento",
-      longitud: 30,
-    },
-    {
-      input: "curp",
-      longitud: 18,
-    },
-    {
-      input: "detalles_evento",
-      longitud: 255,
-    },
-    {
-      input: "tipo_evento",
-      longitud: 20,
+      input: "apellido",
+      longitud: 50,
     },
   ];
   objInputs.forEach((obj) => {
@@ -77,6 +61,11 @@ function validaciones(objInputs, idButton) {
           .replace(/\s+/g, " ")
           .replace(/[^a-zA-ZñáéíóúÁÉÍÓÚ´\s]/g, "");
         return input.value.length !== 0;
+      case "apellido":
+        input.value = input.value
+          .replace(/\s+/g, " ")
+          .replace(/[^a-zA-ZñáéíóúÁÉÍÓÚ´\s]/g, "");
+        return input.value.length !== 0;
       case "phone":
         input.value = input.value.trim().replace(/\D/g, "");
         return (
@@ -84,40 +73,12 @@ function validaciones(objInputs, idButton) {
           input.value.length <= 10 &&
           validator.isMobilePhone(input.value, ["es-MX"])
         );
-      case "torre":
-        input.value = input.value
-          .trim()
-          .replace(/\s/g, "")
-          .replace(/[^a-zA-Z0-9.\-_]/g, "");
-        return input.value.length > 0 && input.value.length <= 5;
-      case "departamento":
-        input.value = input.value
-          .trim()
-          .replace(/\s/g, "")
-          .replace(/[^a-zA-Z0-9.\-_]/g, "");
-        return input.value.length !== 0;
-      case "detalles_evento":
-        return input.value.length > 0 && input.value.length <= 255;
-      case "tipo_evento":
-        return input.value.length > 0 && input.value.length <= 20;
       case "text":
         return input.value.length !== 0;
-      case "cantidad_personas":
-        input.value = input.value.trim().replace(/\D/g, "");
-        return parseInt(input.value) > 0 && parseInt(input.value) <= 50;
       case "fecha":
         return validator.isDate(input.value, { format: "YYYY-MM-DD" });
       case "hora":
         return validator.isTime(input.value);
-      case "curp":
-        let regex =
-          /^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/;
-        input.value = input.value
-          .trim()
-          .toUpperCase()
-          .replace(/\s/g, "")
-          .replace(/[^A-Z0-9]/g, "");
-        return regex.test(input.value);
       default:
         return true;
     }

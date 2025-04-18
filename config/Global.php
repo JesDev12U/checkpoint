@@ -8,12 +8,19 @@ set_include_path(
 
 define("SITE_URL", "http://localhost/checkpoint/");
 
-// ** RUTAS **
+// ** RUTAS GENERALES **
 define("RUTA_EMPLEADO", "empleado/");
 define("RUTA_ADMINISTRADOR", "administrador/");
 define("RUTA_CERRAR_SESION", "controller/cerrarSesion.php");
 define("RUTA_CREAR_CUENTA", "crear-cuenta/");
 define("RUTA_LOGIN", "login/");
+define("RUTA_CUENTA", "cuenta/");
+
+// ** RUTAS DEL ADMINISTRADOR **
+define("RUTA_GESTOR_EMPLEADOS", "gestor-empleados/");
+define("RUTA_GESTOR_CLIENTES", "gestor-clientes/");
+define("RUTA_GESTOR_ADMINISTRADORES", "gestor-administradores/");
+define("RUTA_MTO_ADMINISTRADORES", "mto-administradores/");
 
 // ** BASE DE DATOS **
 define("DB_HOST", "127.0.0.1");

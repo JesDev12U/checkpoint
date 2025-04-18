@@ -8,6 +8,7 @@
 
 #menu {
   margin: 50px;
+  font-family: 'Minecraft';
 }
 
 #menu .row .col {
@@ -15,10 +16,15 @@
 }
 
 #menu .row .col a {
+  /* background-color: #53a43571; */
+  border-radius: 10px;
+  padding: 5px;
   transition: all 0.5s ease;
   display: block;
   text-decoration: none;
   color: black;
+  margin: 10px;
+  background-image: url("../img/menuitem_wallpaper.jpg");
 }
 
 #menu .row .col a:hover {
@@ -27,6 +33,11 @@
 }
 
 #menu .row .col a img {
+  margin-top: 20px;
   width: 10em;
   height: 10em;
+}
+
+#title-name {
+  font-family: 'Minecraft';
 }

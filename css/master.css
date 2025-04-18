@@ -113,3 +113,11 @@ h3 {
 .span-errors {
   color: red;
 }
+
+.account {
+  font-family: 'Minecraft';
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+}
