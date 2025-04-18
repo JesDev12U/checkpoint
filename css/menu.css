@@ -6,8 +6,14 @@
   flex-flow: wrap column;
 }
 
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #menu {
-  margin: 50px;
   font-family: 'Minecraft';
 }
 
@@ -29,7 +35,7 @@
 
 #menu .row .col a:hover {
   transition: all 0.5s ease;
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
 #menu .row .col a img {

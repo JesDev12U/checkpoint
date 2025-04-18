@@ -1,8 +1,8 @@
 <div class="container">
-  <a href="<?php echo $this->mantenimiento ? SITE_URL . RUTA_ADMINISTRADOR . RUTA_GESTOR_ADMINISTRADORES : SITE_URL . RUTA_ADMINISTRADOR ?>" class="btn btn-primary">
+  <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR . RUTA_GESTOR_EMPLEADOS ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
-  <h1><?php echo $this->mantenimiento ? "Mantenimiento de administradores" : "Configuración de la cuenta" ?></h1>
+  <h1><?php echo $_SESSION["usuario"] === "empleado" ? "Configuración de la cuenta" : "Mantenimiento de empleados" ?></h1>
   <div id="formSection" class="mt-5">
     <div class="row">
       <!-- Formulario -->
@@ -10,8 +10,7 @@
         <h5 class="text-center mb-4">Información Personal</h5>
         <form id="form-datos">
           <input type="hidden" name="peticion" value="<?php echo $this->peticion ?>">
-          <?php if (!is_null($this->id_admin)) echo '<input type="hidden" name="id_admin" value="' . $this->id_admin . '" />' ?>
-          <input type="hidden" name="mantenimiento" value="<?php echo $this->mantenimiento ?>">
+          <?php if (!is_null($this->id_empleado)) echo '<input type="hidden" name="id_empleado" value="' . $this->id_empleado . '" />' ?>
           <div class="mb-3">
             <label for="nombre" class="form-label"><i class="fa-solid fa-font"></i>&nbsp;Nombre</label>
             <input
@@ -19,8 +18,8 @@
               class="form-control"
               id="nombre"
               name="nombre"
-              value="<?php echo is_null($this->id_admin) ? "" : $this->nombre ?>"
-              placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí el nombre del administrador" : "Ingresa aquí tu nombre" ?>"
+              value="<?php echo is_null($this->id_empleado) ? "" : $this->nombre ?>"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el nombre del empleado" : "Ingresa aquí tu nombre" ?>"
               required />
             <span id="error-nombre" class="span-errors hidden">Nombre inválido</span>
           </div>
@@ -31,8 +30,8 @@
               class="form-control"
               id="appat"
               name="appat"
-              value="<?php echo is_null($this->id_admin) ? "" : $this->appat ?>"
-              placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí el apellido paterno del administrador" : "Ingresa aquí tu apellido paterno" ?>"
+              value="<?php echo is_null($this->id_empleado) ? "" : $this->appat ?>"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el apellido paterno del empleado" : "Ingresa aquí tu apellido paterno" ?>"
               required />
             <span id="error-appat" class="span-errors hidden">Apellido paterno inválido</span>
           </div>
@@ -43,8 +42,8 @@
               class="form-control"
               id="apmat"
               name="apmat"
-              value="<?php echo is_null($this->id_admin) ? "" : $this->appat ?>"
-              placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí el apellido materno del administrador" : "Ingresa aquí tu apellido materno" ?>"
+              value="<?php echo is_null($this->id_empleado) ? "" : $this->apmat ?>"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el apellido materno del empleado" : "Ingresa aquí tu apellido materno" ?>"
               required />
             <span id="error-apmat" class="span-errors hidden">Apellido materno inválido</span>
           </div>
@@ -55,8 +54,8 @@
               class="form-control"
               id="email"
               name="email"
-              value="<?php echo is_null($this->id_admin) ? "" : $this->email ?>"
-              placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí el correo electrónico del administrador" : "Ingresa aquí tu correo electrónico" ?>"
+              value="<?php echo is_null($this->id_empleado) ? "" : $this->email ?>"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el correo electrónico del empleado" : "Ingresa aquí tu correo electrónico" ?>"
               required />
             <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
           </div>
@@ -64,13 +63,13 @@
             <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>&nbsp;Contraseña</label>
             <div class="input-group">
               <input
-                data-valor="<?php echo is_null($this->id_admin) ?>"
+                data-valor="<?php echo is_null($this->id_empleado) ?>"
                 type="password"
                 class="form-control"
                 id="password"
                 name="password"
-                placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí una contraseña para el administrador" : "Ingresa aquí tu contraseña" ?>"
-                <?php echo !$this->mantenimiento ? "" : "disabled" ?> />
+                placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí una contraseña para el empleado" : "Ingresa aquí una nueva contraseña si la deseas cambiar" ?>"
+                <?php echo is_null($this->id_empleado) || $_SESSION["usuario"] === "empleado" ? "" : "disabled" ?> />
               <button class="btn btn-outline-secondary" id="toggle-password" type="button">
                 <i class="fa-solid fa-eye"></i>
               </button>
@@ -84,8 +83,8 @@
               class="form-control"
               id="telefono"
               name="telefono"
-              value="<?php echo is_null($this->id_admin) ? "" : $this->telefono ?>"
-              placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí el teléfono del administrador" : "Ingresa aquí tu teléfono" ?>"
+              value="<?php echo is_null($this->id_empleado) ? "" : $this->telefono ?>"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el teléfono del empleado" : "Ingresa aquí tu teléfono" ?>"
               required />
             <span id="error-telefono" class="span-errors hidden">Teléfono inválido</span>
           </div>
@@ -96,7 +95,7 @@
         <div class="wrapper-foto">
           <div class="container-foto">
             <?php
-            if (!is_null($this->id_admin) && $this->foto_path !== "") {
+            if (!is_null($this->id_empleado) && $this->foto_path !== "") {
               echo "<img id='foto-user' src='$this->foto_path' alt='$this->foto_path' style='max-width: 250px; max-height: 250px;'>";
             } else {
               $placeholderUserPath = SITE_URL . "uploads/placeholderuser.png";
@@ -108,18 +107,9 @@
         <input type="file" id="foto-file" accept="image/*">
       </div>
       <div class="container" style="margin-bottom: 50px;">
-        <button
-          type="submit"
-          class="btn btn-success"
-          id="btn-send"
-          data-peticion="<?php echo $this->peticion ?>"
-          data-url="<?php echo SITE_URL; ?>"
-          data-id_admin="<?php echo is_null($this->id_admin) ? "" : $this->id_admin ?>"
-          data-mantenimiento="<?php echo $this->mantenimiento ?>"
-          data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>"
-          data-url_gestor_administradores="<?php echo RUTA_GESTOR_ADMINISTRADORES ?>">
+        <button type="submit" class="btn btn-success" id="btn-send" data-peticion="<?php echo $this->peticion ?>" data-url="<?php echo SITE_URL; ?>" data-usuario="<?php echo $_SESSION["usuario"] ?>" data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>">
           <i class="fa-solid fa-check"></i>
-          <?php echo is_null($this->id_admin) ? "Registrar" : "Actualizar" ?>
+          <?php echo is_null($this->id_empleado) ? "Registrar" : "Actualizar" ?>
         </button>
       </div>
     </div>

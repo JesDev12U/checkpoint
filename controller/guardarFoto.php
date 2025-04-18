@@ -28,6 +28,10 @@ function guardarFoto($peticion = null, $id = null, $user, $pathUploads = "fotos_
           if ($peticion === "UPDATE") {
             // TODO: Poner los demás usuarios
             switch ($user) {
+              case "empleado":
+                require_once __DIR__ . "/admin/gestor_empleados/CtrlMtoEmpleados.php";
+                $ctrl = new CtrlMtoEmpleados("UPDATE", $id);
+                break;
               case "administrador":
                 require_once __DIR__ . "/admin/gestor_administradores/CtrlMtoAdministradores.php";
                 $ctrl = new CtrlMtoAdministradores("UPDATE", $id, true);
