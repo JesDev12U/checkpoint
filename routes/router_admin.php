@@ -4,6 +4,30 @@ switch ($action) {
     require_once __DIR__ . "/../controller/admin/CtrlPaginaPrincipal.php";
     $ctrl = new CtrlPaginaPrincipal();
     break;
+  case rtrim(RUTA_GESTOR_CLIENTES, '/'):
+    require_once __DIR__ . "/../controller/admin/gestor_clientes/CtrlGestorClientes.php";
+    $ctrl = new CtrlGestorClientes();
+    break;
+  case rtrim(RUTA_MTO_CLIENTES, '/'):
+    require_once __DIR__ . "/../controller/admin/gestor_clientes/CtrlMtoClientes.php";
+    if (is_null($id)) {
+      $ctrl = new CtrlMtoClientes("INSERT");
+    } else if ($id > 0) {
+      $ctrl = new CtrlMtoClientes("UPDATE", $id);
+      $registro = $ctrl->seleccionaRegistro($id);
+      if (count($registro) == 0) {
+        // Página no encontrada
+        require_once __DIR__ . "/../controller/errors/CtrlError404.php";
+        http_response_code(404);
+        $ctrl = new CtrlError404();
+      }
+    } else {
+      // Página no encontrada
+      require_once __DIR__ . "/../controller/errors/CtrlError404.php";
+      http_response_code(404);
+      $ctrl = new CtrlError404();
+    }
+    break;
   case rtrim(RUTA_GESTOR_EMPLEADOS, '/'):
     require_once __DIR__ . "/../controller/admin/gestor_empleados/CtrlGestorEmpleados.php";
     $ctrl = new CtrlGestorEmpleados();
@@ -11,9 +35,9 @@ switch ($action) {
   case rtrim(RUTA_MTO_EMPLEADOS, '/'):
     require_once __DIR__ . "/../controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
     if (is_null($id)) {
-      $ctrl = new CtrlMtoEmpleados("INSERT", null, true);
+      $ctrl = new CtrlMtoEmpleados("INSERT");
     } else if ($id > 0) {
-      $ctrl = new CtrlMtoEmpleados("UPDATE", $id, true);
+      $ctrl = new CtrlMtoEmpleados("UPDATE", $id);
       $registro = $ctrl->seleccionaRegistro($id);
       if (count($registro) == 0) {
         // Página no encontrada

@@ -24,7 +24,13 @@ CREATE TABLE clientes(
   estado boolean not null,
   foto_path varchar(255) not null,
   telefono varchar(10)  not null,
-  domicilio text not null
+  codigo_postal VARCHAR(5) not null,
+  estado_domicilio VARCHAR(30) not null,
+  alc_mun VARCHAR(40) not null,
+  colonia VARCHAR(40) not null,
+  calle VARCHAR(30) not null,
+  no_ext VARCHAR(10) not null,
+  no_int VARCHAR(10)
 );
 
 CREATE TABLE empleados(

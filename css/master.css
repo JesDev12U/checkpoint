@@ -27,14 +27,15 @@ html {
 
 .loader-container {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: wrap column;
-  position: absolute;
+  position: fixed; /* <- este es el cambio importante */
   top: 0;
-  z-index: 3;
+  left: 0;
+  z-index: 9999;
   backdrop-filter: blur(10px);
 }
 

@@ -107,7 +107,16 @@
         <input type="file" id="foto-file" accept="image/*">
       </div>
       <div class="container" style="margin-bottom: 50px;">
-        <button type="submit" class="btn btn-success" id="btn-send" data-peticion="<?php echo $this->peticion ?>" data-url="<?php echo SITE_URL; ?>" data-usuario="<?php echo $_SESSION["usuario"] ?>" data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>">
+        <button
+          type="submit"
+          class="btn btn-success"
+          id="btn-send"
+          data-peticion="<?php echo $this->peticion ?>"
+          data-url="<?php echo SITE_URL; ?>"
+          data-usuario="<?php echo $_SESSION["usuario"] ?>"
+          data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>"
+          data-url_gestor_empleados="<?php echo RUTA_GESTOR_EMPLEADOS ?>">
+          >
           <i class="fa-solid fa-check"></i>
           <?php echo is_null($this->id_empleado) ? "Registrar" : "Actualizar" ?>
         </button>

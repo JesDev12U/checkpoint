@@ -26,6 +26,22 @@ function validaciones(objInputs, idButton) {
       input: "apellido",
       longitud: 50,
     },
+    {
+      input: "zip_code",
+      longitud: 5,
+    },
+    {
+      input: "calle",
+      longitud: 30,
+    },
+    {
+      input: "numero_exterior",
+      longitud: 10,
+    },
+    {
+      input: "numero_interior",
+      longitud: 10,
+    },
   ];
   objInputs.forEach((obj) => {
     let $input = document.getElementById(obj.id);
@@ -79,6 +95,33 @@ function validaciones(objInputs, idButton) {
         return validator.isDate(input.value, { format: "YYYY-MM-DD" });
       case "hora":
         return validator.isTime(input.value);
+      case "zip_code":
+        input.value = input.value.trim().replace(/\D/g, "");
+        return input.value.length === 5;
+      case "calle":
+        input.value = input.value
+          .replace(/\s+/g, " ")
+          .replace(/[^a-zA-ZñáéíóúÁÉÍÓÚ´\s]/g, "");
+        return input.value.length !== 0;
+      case "numero_exterior":
+        input.value = input.value
+          .replace(/[^a-zA-Z0-9\s/]/g, "") // Quita caracteres no deseados
+          .replace(/\s+/g, " ") // Unifica espacios múltiples
+          .toUpperCase()
+          .trim();
+
+        // Acepta "S/N", "123", "123A", "45 B", "12/3"
+        return (
+          input.value.length !== 0 &&
+          /^[0-9]+[A-Z]?$|^[0-9]+$|^S\/?N$/.test(input.value)
+        );
+      case "numero_interior":
+        input.value = input.value
+          .replace(/[^a-zA-Z0-9\s/]/g, "") // Quita caracteres no deseados
+          .replace(/\s+/g, " ") // Unifica espacios múltiples
+          .toUpperCase()
+          .trim();
+        return true;
       default:
         return true;
     }

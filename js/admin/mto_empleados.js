@@ -82,7 +82,7 @@ $btnSend.addEventListener("click", function (e) {
       } else {
         setTimeout(
           () =>
-            (location.href = `${this.dataset.url}${this.dataset.url_admin}gestor-empleados`),
+            (location.href = `${this.dataset.url}${this.dataset.url_admin}${this.dataset.url_gestor_empleados}`),
           2000
         );
       }

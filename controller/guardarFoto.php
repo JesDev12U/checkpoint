@@ -26,8 +26,11 @@ function guardarFoto($peticion = null, $id = null, $user, $pathUploads = "fotos_
           $foto_path = str_replace(__DIR__ . "/../", SITE_URL, $destPath);
           // Eliminar la foto anterior si es que se trata de un UPDATE
           if ($peticion === "UPDATE") {
-            // TODO: Poner los demás usuarios
             switch ($user) {
+              case "cliente":
+                require_once __DIR__ . "/admin/gestor_clientes/CtrlMtoClientes.php";
+                $ctrl = new CtrlMtoClientes("UPDATE", $id);
+                break;
               case "empleado":
                 require_once __DIR__ . "/admin/gestor_empleados/CtrlMtoEmpleados.php";
                 $ctrl = new CtrlMtoEmpleados("UPDATE", $id);

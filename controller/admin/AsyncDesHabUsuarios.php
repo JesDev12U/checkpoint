@@ -18,13 +18,15 @@ if (!$id || !$usuario || !$operacion) {
 }
 
 // Verificar si el ID existe
-// TODO: Poner los demás usuarios
 if ($usuario === "administrador") {
   require_once __DIR__ . "/gestor_administradores/CtrlMtoAdministradores.php";
   $ctrl = new CtrlMtoAdministradores("UPDATE", null, true);
 } else if ($usuario === "empleado") {
   require_once __DIR__ . "/gestor_empleados/CtrlMtoEmpleados.php";
   $ctrl = new CtrlMtoEmpleados("UPDATE");
+} else if ($usuario === "cliente") {
+  require_once __DIR__ . "/gestor_clientes/CtrlMtoClientes.php";
+  $ctrl = new CtrlMtoClientes("UPDATE");
 } else {
   echo json_encode(["result" => 0, "msg" => "Usuario inválido"]);
   die();
