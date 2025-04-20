@@ -16,11 +16,15 @@ function cargarDesHab() {
           ? "¿Está seguro de deshabilitar este empleado?"
           : this.dataset.usuario === "cliente"
           ? "¿Está seguro de deshabilitar este cliente?"
+          : this.dataset.usuario === "producto"
+          ? "¿Está seguro de deshabilitar este producto?"
           : "¿Está seguro de deshabilitar este administrador?",
         this.dataset.usuario === "empleado"
           ? "¡Hecho! El empleado ha sido deshabilitado"
           : this.dataset.usuario === "cliente"
           ? "¡Hecho! El cliente ha sido deshabilitado"
+          : this.dataset.usuario === "producto"
+          ? "¡Hecho! El producto ha sido deshabilitado"
           : "¡Hecho! El administrador ha sido deshabilitado",
         () => {
           $btn.outerHTML = `<button class="btn btn-success" id="btn-habilitar" data-url="${$btn.dataset.url}" data-usuario="${$btn.dataset.usuario}" data-id="${$btn.dataset.id}">
@@ -47,11 +51,15 @@ function cargarDesHab() {
           ? "¿Está seguro de habilitar este empleado?"
           : this.dataset.usuario === "cliente"
           ? "¿Está seguro de habilitar este cliente?"
+          : this.dataset.usuario === "producto"
+          ? "¿Está seguro de habilitar este producto?"
           : "¿Está seguro de habilitar este administrador?",
         this.dataset.usuario === "empleado"
           ? "¡Hecho! El empleado ha sido habilitado"
           : this.dataset.usuario === "cliente"
-          ? "¡Hecho! EL cliente ha sido habilitado"
+          ? "¡Hecho! El cliente ha sido habilitado"
+          : this.dataset.usuario === "producto"
+          ? "¡Hecho! El producto ha sido habilitado"
           : "¡Hecho! El administrador ha sido habilitado",
         () => {
           $btn.outerHTML = `<button class="btn btn-danger" id="btn-deshabilitar" data-url="${$btn.dataset.url}" data-usuario="${$btn.dataset.usuario}" data-id="${$btn.dataset.id}">

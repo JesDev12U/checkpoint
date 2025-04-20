@@ -48,8 +48,9 @@ CREATE TABLE empleados(
 CREATE TABLE productos(
   id_producto int primary key auto_increment,
   nombre varchar(50) not null,
-  tipo varchar(50) not null,
-  plataforma varchar(50),
+  categoria1 varchar(50) not null,
+  categoria2 varchar(50) not null,
+  categoria3 varchar(50) not null,
   precio double not null,
   estado boolean not null,
   descripcion text not null,

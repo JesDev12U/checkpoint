@@ -1,5 +1,5 @@
 <div class="container-name">
-  <h1 id="title-name">¡Bienvenido <i><?php echo $_SESSION["datos"]["nombre"] ?></i>!</h1>
+  <h1 id="title-name">¡Bienvenido <?php echo $_SESSION["datos"]["nombre"] ?>!</h1>
   <p>¿Qué desea realizar hoy?</p>
 </div>
 <div class="container" id="menu">

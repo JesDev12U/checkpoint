@@ -24,6 +24,10 @@ define("RUTA_MTO_ADMINISTRADORES", "mto-administradores/");
 define("RUTA_MTO_EMPLEADOS", "mto-empleados/");
 define("RUTA_MTO_CLIENTES", "mto-clientes/");
 
+// ** RUTAS DEL EMPLEADO **
+define("RUTA_GESTOR_PRODUCTOS", "gestor-productos/");
+define("RUTA_MTO_PRODUCTOS", "mto-productos/");
+
 // ** BASE DE DATOS **
 define("DB_HOST", "127.0.0.1");
 define("DB_BASE", "checkpointStore");

@@ -85,7 +85,7 @@ switch ($peticion) {
     $ctrl = new CtrlMtoEmpleados("UPDATE", $id_empleado);
     if ($password === "") $password = null;
     if (!$ctrl->validaAtributos(
-      null,
+      $id_empleado,
       $nombre,
       $appat,
       $apmat,

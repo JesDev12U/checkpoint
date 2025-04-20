@@ -77,6 +77,11 @@ function validaciones(objInputs, idButton) {
           .replace(/\s+/g, " ")
           .replace(/[^a-zA-ZñáéíóúÁÉÍÓÚ´\s]/g, "");
         return input.value.length !== 0;
+      case "nombre-alfanumerico":
+        input.value = input.value
+          .replace(/\s+/g, " ")
+          .replace(/[^a-zA-Z0-9ñáéíóúÁÉÍÓÚ´\s]/g, "");
+        return input.value.length !== 0;
       case "apellido":
         input.value = input.value
           .replace(/\s+/g, " ")
@@ -109,7 +114,6 @@ function validaciones(objInputs, idButton) {
           .replace(/\s+/g, " ") // Unifica espacios múltiples
           .toUpperCase()
           .trim();
-
         // Acepta "S/N", "123", "123A", "45 B", "12/3"
         return (
           input.value.length !== 0 &&
@@ -122,6 +126,36 @@ function validaciones(objInputs, idButton) {
           .toUpperCase()
           .trim();
         return true;
+      case "unidades":
+        input.value = input.value.trim().replace(/\D/g, "");
+        return input.value > 0 && input.value <= 9999999;
+
+      case "unidades_flotantes": {
+        // Guarda la posición del cursor
+        const { selectionStart } = input;
+        let val = input.value;
+        // Elimina caracteres no numéricos ni punto
+        val = val.replace(/[^0-9.]/g, "");
+        // Permite solo un punto decimal (el primero)
+        const firstDot = val.indexOf(".");
+        if (firstDot !== -1) {
+          // Solo deja el primer punto, elimina los demás
+          val =
+            val.slice(0, firstDot + 1) +
+            val.slice(firstDot + 1).replace(/\./g, "");
+        }
+        // Solo actualiza el valor si cambió
+        if (input.value !== val) {
+          input.value = val;
+          // Calcula nueva posición del cursor
+          let newPos = selectionStart - (input.value.length - val.length);
+          if (newPos < 0) newPos = 0;
+          input.setSelectionRange(newPos, newPos);
+        }
+        let floatValue = parseFloat(input.value);
+        return !isNaN(floatValue) && floatValue > 0 && floatValue <= 9999999;
+      }
+
       default:
         return true;
     }

@@ -10,7 +10,7 @@
     Agregar
   </a>
 
-  <table id="tblDatos" class="table table-striped">
+  <table class="tblDatos" class="table table-striped">
     <thead>
       <tr>
         <th>ID</th>

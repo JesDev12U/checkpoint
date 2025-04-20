@@ -116,7 +116,6 @@
           data-usuario="<?php echo $_SESSION["usuario"] ?>"
           data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>"
           data-url_gestor_empleados="<?php echo RUTA_GESTOR_EMPLEADOS ?>">
-          >
           <i class="fa-solid fa-check"></i>
           <?php echo is_null($this->id_empleado) ? "Registrar" : "Actualizar" ?>
         </button>

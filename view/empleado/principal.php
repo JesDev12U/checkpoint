@@ -1,1 +1,20 @@
-<h1>Soy el empleado!</h1>
+<div class="container-name">
+  <h1 id="title-name">¡Bienvenido <?php echo $_SESSION["datos"]["nombre"] ?>!</h1>
+  <p>¿Qué desea realizar hoy?</p>
+</div>
+<div class="container" id="menu">
+  <div class="row">
+    <div class="col">
+      <a href="<?php echo SITE_URL . RUTA_EMPLEADO . RUTA_GESTOR_PRODUCTOS ?>">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_productos.png" alt="Gestor de productos">
+        <p>Gestor de productos</p>
+      </a>
+    </div>
+    <div class="col">
+      <a href="<?php echo SITE_URL . RUTA_EMPLEADO . RUTA_CUENTA ?>">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/cuenta.png" alt="Configuración de la cuenta">
+        <p>Configuración de la cuenta</p>
+      </a>
+    </div>
+  </div>
+</div>

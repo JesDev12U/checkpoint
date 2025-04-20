@@ -39,6 +39,10 @@ function guardarFoto($peticion = null, $id = null, $user, $pathUploads = "fotos_
                 require_once __DIR__ . "/admin/gestor_administradores/CtrlMtoAdministradores.php";
                 $ctrl = new CtrlMtoAdministradores("UPDATE", $id, true);
                 break;
+              case "producto":
+                require_once __DIR__ . "/empleado/gestor_productos/CtrlMtoProductos.php";
+                $ctrl = new CtrlMtoProductos("UPDATE", $id);
+                break;
               default:
                 echo json_encode(["result" => 0, "msg" => "Usuario inválido"]);
                 die();

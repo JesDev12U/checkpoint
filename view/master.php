@@ -143,7 +143,7 @@
   </script>
   <!-- JS para DataTable -->
   <script>
-    var tblDatos = new DataTable("#tblDatos", {
+    var tblDatos = new DataTable(".tblDatos", {
       scrollY: 400,
       scrollX: true,
       scrollCollapse: true,
