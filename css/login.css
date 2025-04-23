@@ -1,37 +1,128 @@
-#container-principal {
-  margin-top: 90px;
-}
 
-#img-checkpoint {
-  height: 500px;
+body {
+  background: linear-gradient(120deg, #c6ffb9 0%, #5b874f 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
-
 .login-container {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fa;
 }
-
 .login-box {
-  background: white;
+  background: #f6fff3;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(62, 124, 44, 0.18);
+  padding: 2.5rem 2rem 2rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+#title-login {
+  font-weight: 700;
+  color: #265c1e;
+  letter-spacing: 1px;
+  font-family: 'Minecraft';
+}
+.form-label {
+  font-weight: 500;
+  color: #3e7c2c;
+}
+.form-control {
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  border: 1px solid #a7d7a9;
+  transition: border-color 0.2s;
+  background: #eafbe7;
 }
-
-.login-box img {
-  max-width: 100%;
-  height: auto;
+.form-control:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 2px #b7f7b0;
 }
-
-.btn-practical {
-  background-color: #8BC34A;
-  color: white;
+.input-group .btn {
+  border-radius: 0 8px 8px 0;
+  background: #4caf50;
+  color: #fff;
   border: none;
 }
-
-#title-login {
-  font-family: 'Minecraft';
-  font-size: 3em;
+.input-group .btn:hover {
+  background: #388e3c;
+}
+.span-errors {
+  color: #b71c1c;
+  font-size: 0.95em;
+  margin-top: 2px;
+  display: block;
+  transition: opacity 0.2s;
+}
+.span-errors.hidden {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+.btn-practical {
+  background: linear-gradient(90deg, #4caf50 0%, #388e3c 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 0;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+}
+.btn-practical:disabled {
+  background: #b7f7b0;
+  color: #fff;
+  cursor: not-allowed;
+}
+.btn-practical:not(:disabled):hover {
+  background: linear-gradient(90deg, #388e3c 0%, #4caf50 100%);
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.16);
+}
+.login-links a {
+  color: #388e3c;
+  font-size: 0.97em;
+  transition: color 0.2s;
+}
+.login-links a:hover {
+  color: #265c1e;
+  text-decoration: underline;
+}
+#img-checkpoint {
+  max-width: 90%;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(76, 175, 80, 0.10);
+}
+@media (max-width: 991px) {
+  .row.w-75 {
+    width: 100% !important;
+  }
+  .login-box {
+    max-width: 100%;
+    padding: 2rem 1rem;
+  }
+  #img-checkpoint {
+    max-width: 70vw;
+    margin-bottom: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  .login-container {
+    padding: 2rem 0;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .col-md-6 {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  #img-checkpoint {
+    max-width: 90vw;
+  }
 }

@@ -1,0 +1,135 @@
+.minecraft-title {
+  font-family: 'Press Start 2P', 'Arial Black', Arial, sans-serif;
+  letter-spacing: 1px;
+  color: #5e8c31;
+  text-shadow: 2px 2px 0 #bada55, 4px 4px 0 #333;
+}
+
+.minecraft-header {
+  background: linear-gradient(90deg, #bada55 0%, #5e8c31 100%);
+  border-radius: 0 0 24px 24px;
+  border-bottom: 4px solid #3e5c14;
+}
+
+.minecraft-navbar {
+  background: #e2f7c2;
+  border-radius: 12px;
+  border: 2px solid #5e8c31;
+  font-family: 'Press Start 2P', 'Arial Black', Arial, sans-serif;
+}
+
+.minecraft-navbar .nav-link,
+.minecraft-navbar .navbar-brand {
+  color: #3e5c14 !important;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.minecraft-navbar .dropdown-menu {
+  background: #f7ffe0;
+  border: 2px solid #5e8c31;
+  border-radius: 8px;
+}
+
+.minecraft-navbar .dropdown-item {
+  color: #3e5c14;
+  font-family: inherit;
+}
+
+.minecraft-navbar .dropdown-item:hover,
+.minecraft-navbar .dropdown-item:focus {
+  background: #bada55;
+  color: #222;
+}
+
+
+/* Por defecto, el subnav queda debajo del navbar principal (desktop) */
+.minecraft-navbar.sticky-top {
+  top: 70px; /* Altura del navbar principal en desktop */
+  z-index: 1020;
+  transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 991.98px) {
+  body.mainnav-open .minecraft-navbar.sticky-top {
+    top: 320px; /* Altura del navbar principal cuando el menú está abierto */
+  }
+  body:not(.mainnav-open) .minecraft-navbar.sticky-top {
+    top: 70px; /* Altura normal cuando el menú está cerrado */
+  }
+}
+
+.minecraft-card {
+  border: 3px solid #5e8c31;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #bada55aa;
+  background: #f7ffe0;
+  font-family: 'Press Start 2P', 'Arial Black', Arial, sans-serif;
+}
+
+.minecraft-card .card-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.minecraft-btn {
+  background: #5e8c31;
+  color: #fff;
+  border: 2px solid #3e5c14;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', 'Arial Black', Arial, sans-serif;
+  font-size: 0.8rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.minecraft-btn:hover,
+.minecraft-btn:focus {
+  background: #bada55;
+  color: #3e5c14;
+  border-color: #5e8c31;
+}
+
+.cart-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.product-img {
+  background: #bada55;
+  border-bottom: 2px solid #5e8c31;
+  object-fit: contain;
+  padding: 12px;
+  height: 180px;
+}
+
+.bg-white {
+  background: #fff !important;
+}
+
+body {
+  background: #e2f7c2;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .minecraft-title {
+    font-size: 1.2rem !important;
+  }
+  .minecraft-header {
+    padding: 1rem 0 !important;
+  }
+  .minecraft-card .card-title {
+    font-size: 0.9rem;
+  }
+}
+
+/* Scroll para dropdown-menu largos */
+.dropdown-menu {
+  max-height: 300px; /* Ajusta la altura máxima según tu preferencia */
+  overflow-y: auto;
+  overflow-x: hidden;
+}

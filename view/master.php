@@ -35,74 +35,118 @@
       color="black"></l-tail-chase>
     <h3>Cargando, espere un momento...</h3>
   </div>
-  <!-- Navbar superior -->
-  <nav class="navbar navbar-expand-lg border-bottom fixed-top">
-    <a href="index.php" class="navbar-brand" id="container-logo-navbar">
-      <img src="img/logo2.png" alt="Logo" width="70" height="70">
-      <img src="img/logo3.png" alt="Logo" width="200" height="70">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="account">
-        <?php
-        if (isset($_SESSION) && !isset($_SESSION['email'])  && count($_SESSION) !== 0) {
-          $foto_path = isset($_SESSION["datos"]["foto_path"]) && $_SESSION["datos"]["foto_path"] !== "" ? $_SESSION["datos"]["foto_path"] : "./uploads/placeholderuser.png";
-          echo '<img id="foto-user-header" src="' . $foto_path . '" alt="Foto del usuario">';
-          echo '<p>' . $_SESSION["datos"]["nombre"] . ' ' . $_SESSION["datos"]["appat"] . ' ' . $_SESSION["datos"]["apmat"] . '</p>';
-        }
-        ?>
+
+  <!-- Navbar superior mejorado -->
+  <nav class="navbar navbar-expand-lg shadow-sm fixed-top py-0 sticky-top">
+    <div class="container-fluid">
+      <!-- Logo y nombre -->
+      <a href="index.php" class="navbar-brand d-flex align-items-center gap-2" id="container-logo-navbar">
+        <img src="img/logo2.png" alt="Logo" width="50" height="50" class="d-inline-block align-middle">
+        <img src="img/logo3.png" alt="Checkpoint" width="150" height="50" class="d-none d-md-inline-block align-middle">
+      </a>
+      <!-- Botón hamburguesa -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Contenido colapsable -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Opciones de navegación -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <?php if (is_array($ctrl->opciones) && count($ctrl->opciones) > 0): ?>
+            <?php foreach ($ctrl->opciones as $opcion): ?>
+              <?php
+              $sesionIniciada = isset($_SESSION) && count($_SESSION) !== 0;
+              // Mostrar todas las opciones excepto "login" si hay sesión iniciada
+              // Mostrar solo "login" si NO hay sesión iniciada
+              if (($sesionIniciada && $opcion['id'] !== "login") ||
+                (!$sesionIniciada && $opcion['id'] === "login")
+              ):
+              ?>
+                <li class="nav-item">
+                  <a id='<?php echo $opcion['id'] ?>' class="nav-link px-3" <?php echo 'href="' . $opcion['href'] . '"' ?>>
+                    <?php echo $opcion['nombre'] ?>
+                  </a>
+                </li>
+              <?php endif ?>
+            <?php endforeach ?>
+          <?php endif ?>
+        </ul>
+        <!-- Usuario -->
+        <div class="d-flex align-items-center ms-lg-4 mt-3 mt-lg-0">
+          <?php
+          if (isset($_SESSION) && count($_SESSION) !== 0) {
+            $foto_path = isset($_SESSION["datos"]["foto_path"]) && $_SESSION["datos"]["foto_path"] !== "" ? $_SESSION["datos"]["foto_path"] : "./uploads/placeholderuser.png";
+          ?>
+            <img id="foto-user-header" src="<?php echo $foto_path; ?>" alt="Foto del usuario"
+              class="rounded-circle border border-2" width="40" height="40" style="object-fit:cover;">
+            <div class="ms-2 d-none d-md-block">
+              <span class="fw-semibold"><?php echo $_SESSION["datos"]["nombre"] . ' ' . $_SESSION["datos"]["appat"]; ?></span>
+              <br>
+              <span class="text-muted small"><?php echo $_SESSION["datos"]["apmat"]; ?></span>
+            </div>
+            <!-- Botón de logout (opcional) -->
+            <form action="<?php echo RUTA_CERRAR_SESION ?>" method="post" class="ms-3 mb-0 d-inline">
+              <button type="submit" class="btn btn-outline-danger btn-sm" title="Cerrar sesión">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </button>
+            </form>
+          <?php } ?>
+        </div>
       </div>
-      <ul class="navbar-nav ms-auto">
-        <?php foreach ($ctrl->opciones as $opcion): ?>
-          <li class="nav-item"><a id='<?php echo $opcion['id'] ?>' class="nav-link" <?php echo 'href="' . $opcion['href'] . '"' ?>><?php echo $opcion['nombre'] ?></a></li>
-        <?php endforeach ?>
-      </ul>
     </div>
   </nav>
   <div id="container-principal" class="container-fluid">
     <!-- Contenido de cada controlador -->
     <?php $ctrl->renderContent(); ?>
   </div>
-  <!-- Footer -->
-  <footer class="py-5 border-top">
+
+  <!-- Footer mejorado estilo Minecraft -->
+  <footer class="py-5 border-top mt-5">
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4">
         <div class="col mb-3 text-center container-redes-sociales">
-          <h5>Siguenos</h5>
-          <a href="#" class="me-2"><i class="fa-brands fa-facebook"></i></a>
-          <a href="#" class="me-2"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="me-2"><i class="fa-brands fa-instagram"></i></a>
+          <h5>¡Síguenos!</h5>
+          <a href="#" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
         <div class="col mb-3 text-center">
           <h5>Políticas de uso</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Aviso de privacidad</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Términos y condiciones</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Aviso de privacidad</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0">Términos y condiciones</a></li>
           </ul>
         </div>
 
         <div class="col mb-3 text-center">
-          <h5>Contactanos</h5>
+          <h5>Contáctanos</h5>
           <ul class="nav flex-column">
-            <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5555555555</li>
-            <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5566666666</li>
+            <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5555-555555</li>
+            <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5566-666666</li>
+            <li class="nav-item mb-2"><i class="fa-solid fa-envelope"></i>&nbsp;soporte@checkpoint.mx</li>
           </ul>
         </div>
 
-        <div class="col-12 col-md-4 mb-6">
+        <div class="col-12 col-md-4 mb-3 text-center">
+          <h5>¡Visítanos!</h5>
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1881.2732895098143!2d-99.20992246160364!3d19.431987424886835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2021e50a4d4db%3A0xcfaa324d96159af7!2sAv.%20Paseo%20de%20las%20Palmas%20123%2C%20Polanco%2C%20Lomas%20de%20Chapultepec%20III%20Secc%2C%20Miguel%20Hidalgo%2C%2011510%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1733379914973!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
         </div>
       </div>
-      <div class="container text-center">
+      <div class="container text-center mt-4">
         <hr>
         <img src="img/logo3.png" alt="Logo" width="200" height="70">
-        <p>Calle Paseo de Lomas Turbas 123, Colonia Lomas de Chapultepec, Alcaldía Miguel Hidalgo, Ciudad de México, C.P. 11000, México</p>
+        <p class="mt-2 mb-0">
+          Calle Paseo de Lomas Turbas 123, Colonia Lomas de Chapultepec, Alcaldía Miguel Hidalgo, Ciudad de México, C.P. 11000, México
+        </p>
+        <div class="copyright mt-2">
+          &copy; <?php echo date('Y'); ?> Checkpoint - Tu tienda de videojuegos con espíritu Minecraft.
+        </div>
       </div>
     </div>
   </footer>
+
   <!-- jQuery -->
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap JS -->

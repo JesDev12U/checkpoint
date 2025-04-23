@@ -14,7 +14,7 @@ if (isset($_GET['page'])) {
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"]) {
+if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] && $_SESSION["usuario"] !== "cliente") {
   if ($page !== $_SESSION["usuario"]) {
     $page = $_SESSION["usuario"];
     $action = NULL;
