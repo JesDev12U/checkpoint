@@ -11,6 +11,7 @@ define("SITE_URL", "http://localhost/checkpoint/");
 // ** RUTAS GENERALES **
 define("RUTA_EMPLEADO", "empleado/");
 define("RUTA_ADMINISTRADOR", "administrador/");
+define("RUTA_CLIENTE", "cliente/");
 define("RUTA_CERRAR_SESION", "controller/cerrarSesion.php");
 define("RUTA_CREAR_CUENTA", "crear-cuenta/");
 define("RUTA_LOGIN", "login/");
@@ -27,6 +28,9 @@ define("RUTA_MTO_CLIENTES", "mto-clientes/");
 // ** RUTAS DEL EMPLEADO **
 define("RUTA_GESTOR_PRODUCTOS", "gestor-productos/");
 define("RUTA_MTO_PRODUCTOS", "mto-productos/");
+
+// ** RUTAS DEL CLIENTE **
+define("RUTA_CARRITO", "carrito/");
 
 // ** BASE DE DATOS **
 define("DB_HOST", "127.0.0.1");

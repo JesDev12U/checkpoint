@@ -79,6 +79,8 @@ document
         </div>
         ${text}
       `;
+      loadEventAddCart();
+      loadFormatearMXN();
     } catch (err) {
       resultsDiv.innerHTML = `
       <div class="col-12">
@@ -86,11 +88,6 @@ document
       </div>
     `;
     }
-    //   resultsDiv.innerHTML = `
-    //   <div class="col-12">
-    //     <div class="alert alert-secondary">Resultados de búsqueda para: <strong>${query}</strong> (aquí aparecerán los productos)</div>
-    //   </div>
-    // `;
   });
 
 // Permitir buscar con Enter
@@ -101,3 +98,50 @@ document
       document.getElementById("modalSearchBtn").click();
     }
   });
+
+function loadEventAddCart() {
+  document.querySelectorAll(".btn-addcart").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      try {
+        aparecerLoader();
+        const res = await fetch(
+          `${btn.dataset.url}/controller/cliente/carrito/AsyncAddCarrito.php`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              id_producto: btn.dataset.id_producto,
+            }),
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Error para añadir el producto al carrito");
+        }
+        const json = await res.json();
+        desaparecerLoader();
+        if (json.result !== 1) {
+          Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: json.msg,
+          });
+        } else {
+          Swal.fire({
+            icon: "success",
+            title: "Producto añadido al carrito",
+            text: json.msg,
+          });
+        }
+      } catch (err) {
+        desaparecerLoader();
+        console.error(err);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: err,
+        });
+      }
+    });
+  });
+}
+
+loadEventAddCart();

@@ -223,9 +223,66 @@ class CtrlMtoProductos
     );
   }
 
+  public function verificarStockCarrito()
+  {
+    $model = new Model();
+    $productos = $model->seleccionaRegistros(
+      "carrito",
+      [
+        "carrito.id_producto",
+        "productos.cantidad AS stock",
+        "productos.precio"
+      ],
+      "carrito.cantidad > productos.cantidad",
+      null,
+      "INNER JOIN productos ON carrito.id_producto = productos.id_producto"
+    );
+    if (count($productos) !== 0) {
+      for ($i = 0; $i < count($productos); $i++) {
+        $model->modificaRegistro(
+          "carrito",
+          [
+            "cantidad",
+            "total"
+          ],
+          "id_producto=" . $productos[$i]["id_producto"],
+          [
+            $productos[$i]["stock"],
+            $productos[$i]["stock"] * $productos[$i]["precio"]
+          ]
+        );
+      }
+    }
+  }
+
+  public function actualizarTotalCarrito($id_producto)
+  {
+    $model = new Model();
+    $precioProducto = $model->seleccionaRegistros(
+      "productos",
+      ["precio"],
+      "id_producto=$id_producto",
+    )[0]["precio"];
+    $cantidadProductoCarrito = $model->seleccionaRegistros(
+      "carrito",
+      ["cantidad"],
+      "id_producto=$id_producto"
+    )[0]["cantidad"];
+    $model->modificaRegistro(
+      "carrito",
+      ["total"],
+      "id_producto=$id_producto",
+      [$cantidadProductoCarrito * $precioProducto]
+    );
+  }
+
   public function deshabilitarRegistro($id_producto)
   {
     $model = new Model();
+    $model->eliminaRegistro(
+      "carrito",
+      "id_producto=$id_producto"
+    );
     return $model->modificaRegistro(
       "productos",
       ["estado"],

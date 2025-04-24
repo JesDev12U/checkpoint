@@ -24,9 +24,9 @@ function renderProductosPrincipal($productos)
               <h5 class="card-title" style="color:#3e5c14;"><?php echo htmlspecialchars($reg["nombre"]) ?></h5>
               <p class="card-text mb-2"><?php echo htmlspecialchars($reg["descripcion"]) ?></p>
               <div class="mt-auto">
-                <span class="fw-bold" style="color:#5e8c31;"><?php echo "$" . htmlspecialchars($reg["precio"]) . " MXN" ?></span>
-                <button class="btn minecraft-btn btn-sm float-end">
-                  <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" class="cart-icon" alt="Carrito">Añadir al carrito
+                <span class="fw-bold monetario" style="color:#5e8c31;"><?php echo htmlspecialchars($reg["precio"]) ?></span>
+                <button class="btn minecraft-btn btn-sm float-end btn-addcart" data-url="<?php echo SITE_URL ?>" data-id_producto="<?php echo $reg["id_producto"] ?>">
+                  <i class="fa-solid fa-cart-shopping"></i>&nbsp;Añadir al carrito
                 </button>
               </div>
             </div>

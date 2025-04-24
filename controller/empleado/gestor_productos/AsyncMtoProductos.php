@@ -105,6 +105,9 @@ switch ($peticion) {
         $cantidad,
         $foto_path
       )) {
+        // Verificar cantidad en los carritos de compra
+        $ctrl->verificarStockCarrito();
+        $ctrl->actualizarTotalCarrito($id_producto);
         echo json_encode(["result" => 1, "msg" => "Registro modificado correctamente"]);
       } else {
         echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD."]);

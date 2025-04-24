@@ -58,8 +58,8 @@ class CtrlPaginaPrincipal
   public $opciones = [
     ["nombre" => ICON_PEDIDOS, "href" => "#", "id" => "pedidos"],
     ["nombre" => ICON_HISTORIAL_COMPRAS, "href" => "#", "id" => "historial-compras"],
-    ["nombre" => ICON_CARRITO, "href" => "#", "id" => "carrito"],
-    ["nombre" => ICON_INICIAR_SESION, "href" => SITE_URL . "login", "id" => "login"]
+    ["nombre" => ICON_CARRITO, "href" => SITE_URL . RUTA_CLIENTE . RUTA_CARRITO, "id" => "carrito"],
+    ["nombre" => ICON_INICIAR_SESION, "href" => SITE_URL . RUTA_LOGIN, "id" => "login"]
   ];
   public $title = "Principal";
 

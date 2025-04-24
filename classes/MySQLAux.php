@@ -314,8 +314,10 @@ class MySQLAux
 			$pcmd = $cnx->prepare($query);
 
 			// Vincular los parámetros si existen.
-			foreach ($params as $indice => $param) {
-				$pcmd->bindValue($indice + 1, $param, PDO::PARAM_STR);
+			if (!is_null($params)) {
+				foreach ($params as $indice => $param) {
+					$pcmd->bindValue($indice + 1, $param, PDO::PARAM_STR);
+				}
 			}
 
 			// Ejecutar la consulta y verificar el resultado.

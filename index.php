@@ -14,15 +14,29 @@ if (isset($_GET['page'])) {
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
-if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] && $_SESSION["usuario"] !== "cliente") {
-  if ($page !== $_SESSION["usuario"]) {
-    $page = $_SESSION["usuario"];
-    $action = NULL;
-    $id = NULL;
+// Manejo de redireccionamiento de usuario
+if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"]) {
+  if ($_SESSION["usuario"] === "cliente") {
+    // Solo permitir acceso a 'principal' y 'cliente'
+    if ($page !== "principal" && $page !== "cliente") {
+      $page = "principal";
+      $action = null;
+      $id = null;
+    }
+  } else {
+    // Para empleados o administradores, solo permitir acceso a su dashboard principal
+    if ($page !== $_SESSION["usuario"]) {
+      $page = $_SESSION["usuario"];
+      $action = null;
+      $id = null;
+    }
   }
 } else {
-  if ($page === "administrador" || $page === "empleado") {
+  // Si no hay sesión, no permitir acceso a rutas protegidas
+  if ($page === "administrador" || $page === "empleado" || $page === "cliente") {
     $page = "principal";
+    $action = null;
+    $id = null;
   }
 }
 
@@ -57,6 +71,9 @@ switch ($page) {
     break;
   case 'empleado':
     include __DIR__ . "/routes/router_empleado.php";
+    break;
+  case "cliente":
+    include __DIR__ . "/routes/router_cliente.php";
     break;
   default:
     // Página no encontrada

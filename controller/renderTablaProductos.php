@@ -38,7 +38,7 @@ function renderTablaProductos($productos)
             <?php endif; ?>
           </td>
           <td><?php echo htmlspecialchars($reg["nombre"]) ?></td>
-          <td><?php echo htmlspecialchars($reg["precio"]) ?></td>
+          <td class="monetario"><?php echo htmlspecialchars($reg["precio"]) ?></td>
           <td><?php echo htmlspecialchars($reg["cantidad"]) ?></td>
           <td><?php echo htmlspecialchars($reg["descripcion"]) ?></td>
           <td>
