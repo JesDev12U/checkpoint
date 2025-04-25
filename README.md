@@ -8,3 +8,9 @@ Ejemplo del archvo `.env`
 EMAIL=ejemplo@ejemplo.ejemplo
 PASSWORD_EMAIL=password_ejemplo
 ```
+
+También es necesario darle permisos de escritura al directorio `uploads/` y a su contenido recursivamente para poder subir las Fotos que se suban en la página
+
+```bash
+sudo chmod 777 -R uploads
+```
