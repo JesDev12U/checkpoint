@@ -67,6 +67,26 @@ if ($togglePassword) {
   });
 }
 
+const $confirmPassword = document.getElementById("confirm-password");
+const $toggleConfirmPassword = document.getElementById(
+  "toggle-confirm-password"
+);
+
+if ($toggleConfirmPassword) {
+  $toggleConfirmPassword.addEventListener("click", function () {
+    const type = $confirmPassword.type === "password" ? "text" : "password";
+    $confirmPassword.type = type;
+
+    switch (type) {
+      case "password":
+        this.innerHTML = `<i class="fa-solid fa-eye"></i>`;
+        break;
+      case "text":
+        this.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
+    }
+  });
+}
+
 function formatearMXN(cantidad) {
   let numero = Number(cantidad);
   if (isNaN(numero)) return "$0.00 MXN";

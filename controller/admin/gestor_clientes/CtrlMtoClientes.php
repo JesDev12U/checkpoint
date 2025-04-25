@@ -37,7 +37,6 @@ class CtrlMtoClientes
       $this->title = "Configuración de la cuenta";
       $this->opciones = [
         ["nombre" => ICON_HOME, "href" => SITE_URL, "id" => "home"],
-        ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
       ];
     }
     $this->peticion = $peticion;

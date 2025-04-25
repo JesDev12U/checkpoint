@@ -6,7 +6,7 @@ class CtrlPaginaPrincipal
   const JS = __DIR__ . "/../../js/empleado/principal.js";
 
   public $opciones = [
-    ["nombre" => ICON_CUENTA, "href" => "#", "id" => "configuracion"],
+    ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_EMPLEADO . RUTA_CUENTA, "id" => "configuracion"],
   ];
   public $title = "Empleado";
 

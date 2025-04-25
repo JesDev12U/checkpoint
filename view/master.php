@@ -75,15 +75,13 @@
         <!-- Usuario -->
         <div class="d-flex align-items-center ms-lg-4 mt-3 mt-lg-0">
           <?php
-          if (isset($_SESSION) && count($_SESSION) !== 0) {
+          if (isset($_SESSION) && (!isset($_SESSION['codigo']) && !isset($_SESSION['email'])) && count($_SESSION) !== 0) {
             $foto_path = isset($_SESSION["datos"]["foto_path"]) && $_SESSION["datos"]["foto_path"] !== "" ? $_SESSION["datos"]["foto_path"] : "./uploads/placeholderuser.png";
           ?>
             <img id="foto-user-header" src="<?php echo $foto_path; ?>" alt="Foto del usuario"
               class="rounded-circle border border-2" width="40" height="40" style="object-fit:cover;">
-            <div class="ms-2 d-none d-md-block">
-              <span class="fw-semibold"><?php echo $_SESSION["datos"]["nombre"] . ' ' . $_SESSION["datos"]["appat"]; ?></span>
-              <br>
-              <span class="text-muted small"><?php echo $_SESSION["datos"]["apmat"]; ?></span>
+            <div class="account ms-2 d-none d-md-block">
+              <p class="fw-semibold"><?php echo $_SESSION["datos"]["nombre"] . ' ' . $_SESSION["datos"]["appat"] . ' ' . $_SESSION["datos"]["apmat"]; ?></p>
             </div>
             <!-- Botón de logout (opcional) -->
             <form action="<?php echo RUTA_CERRAR_SESION ?>" method="post" class="ms-3 mb-0 d-inline">

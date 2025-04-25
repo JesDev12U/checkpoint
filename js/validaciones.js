@@ -2,46 +2,16 @@ function validaciones(objInputs, idButton) {
   //objInputs: [{ id, type, spanError }] Array de Objetos
   //Longitudes obtenidas directamente de la base de datos
   const lengthInputs = [
-    {
-      input: "phone",
-      longitud: 10,
-    },
-    {
-      input: "password",
-      longitud: 16,
-    },
-    {
-      input: "password-modify",
-      longitud: 16,
-    },
-    {
-      input: "nombre",
-      longitud: 50,
-    },
-    {
-      input: "email",
-      longitud: 80,
-    },
-    {
-      input: "apellido",
-      longitud: 50,
-    },
-    {
-      input: "zip_code",
-      longitud: 5,
-    },
-    {
-      input: "calle",
-      longitud: 30,
-    },
-    {
-      input: "numero_exterior",
-      longitud: 10,
-    },
-    {
-      input: "numero_interior",
-      longitud: 10,
-    },
+    { input: "phone", longitud: 10 },
+    { input: "password", longitud: 16 },
+    { input: "password-modify", longitud: 16 },
+    { input: "nombre", longitud: 50 },
+    { input: "email", longitud: 80 },
+    { input: "apellido", longitud: 50 },
+    { input: "zip_code", longitud: 5 },
+    { input: "calle", longitud: 30 },
+    { input: "numero_exterior", longitud: 10 },
+    { input: "numero_interior", longitud: 10 },
   ];
   objInputs.forEach((obj) => {
     let $input = document.getElementById(obj.id);
@@ -52,8 +22,17 @@ function validaciones(objInputs, idButton) {
         if (obj.type === input) this.value = this.value.slice(0, longitud);
 
       isValidInput = checkValidInput(obj.type, this);
-      if (isValidInput) $spanError.classList.add("hidden");
-      else $spanError.classList.remove("hidden");
+      if (isValidInput && $spanError) $spanError.classList.add("hidden");
+      else if ($spanError) $spanError.classList.remove("hidden");
+
+      // --- NUEVO: Si es password, revalida confirm-password ---
+      if (obj.type === "password" || obj.type === "password-modify") {
+        const confirmInput = document.getElementById("confirm-password");
+        if (confirmInput) {
+          confirmInput.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }
+
       checkAllValid();
     });
   });
@@ -67,11 +46,16 @@ function validaciones(objInputs, idButton) {
           .toLowerCase()
           .trim();
         return validator.isEmail(input.value);
-      case "password":
+      case "password": {
         input.value = input.value.replace(/\s+/g, "");
+        // Solo valida longitud y que no esté vacío
         return input.value.length > 0 && input.value.length <= 16;
-      case "password-modify":
+      }
+      case "password-modify": {
+        input.value = input.value.replace(/\s+/g, "");
+        // Solo valida longitud (puede estar vacío si no es obligatorio)
         return input.value.length <= 16;
+      }
       case "nombre":
         input.value = input.value
           .replace(/\s+/g, " ")
@@ -117,7 +101,7 @@ function validaciones(objInputs, idButton) {
         // Acepta "S/N", "123", "123A", "45 B", "12/3"
         return (
           input.value.length !== 0 &&
-          /^[0-9]+[A-Z]?$|^[0-9]+$|^S\/?N$/.test(input.value)
+          /^[A-Z]+[0-9]+$|^[0-9]+[A-Z]+$|^[0-9]+$|^S\/?N$/.test(input.value)
         );
       case "numero_interior":
         input.value = input.value
@@ -154,6 +138,22 @@ function validaciones(objInputs, idButton) {
         }
         let floatValue = parseFloat(input.value);
         return !isNaN(floatValue) && floatValue > 0 && floatValue <= 9999999;
+      }
+
+      case "confirm-password": {
+        // Busca el input de password original (puede ser "password" o "password-modify")
+        let passwordInput =
+          document.getElementById("password") ||
+          document.getElementById("password-modify");
+        if (!passwordInput) return false;
+        // Limpia espacios y limita longitud
+        input.value = input.value.replace(/\s+/g, "").slice(0, 16);
+        // Compara valores
+        return (
+          input.value.length > 0 &&
+          input.value === passwordInput.value &&
+          passwordInput.value.length > 0
+        );
       }
 
       default:

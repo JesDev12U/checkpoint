@@ -66,6 +66,10 @@ switch ($page) {
       $ctrl = new CtrlCrearCuenta();
     }
     break;
+  case 'recuperar-password':
+    require_once __DIR__ . "/controller/CtrlRecuperarPassword.php";
+    $ctrl = new CtrlRecuperarPassword();
+    break;
   case 'administrador':
     include __DIR__ . "/routes/router_admin.php";
     break;

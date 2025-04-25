@@ -328,3 +328,27 @@ h3 {
   align-items: center;
   flex-direction: row;
 }
+
+#input-correo-container,
+#input-codigo-container .row,
+#input-nuevapassword-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.code-input {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+.code-input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
