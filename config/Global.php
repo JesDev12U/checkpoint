@@ -6,7 +6,7 @@ set_include_path(
     PATH_SEPARATOR . realpath(__DIR__ . '/..') . '/classes'
 );
 
-define("SITE_URL", "http://localhost/checkpoint/");
+define("SITE_URL", "https://fresh-direct-eagle.ngrok-free.app/checkpoint/");
 
 // ** RUTAS GENERALES **
 define("RUTA_EMPLEADO", "empleado/");
@@ -31,6 +31,7 @@ define("RUTA_MTO_PRODUCTOS", "mto-productos/");
 
 // ** RUTAS DEL CLIENTE **
 define("RUTA_CARRITO", "carrito/");
+define("RUTA_PEDIDOS", "pedidos/");
 
 // ** BASE DE DATOS **
 define("DB_HOST", "127.0.0.1");
@@ -51,4 +52,4 @@ define("ICON_HOME", '<i class="fa-solid fa-house"></i> Home');
 define("ICON_INICIAR_SESION", '<i class="fa-solid fa-user"></i> Acceder');
 define("ICON_CARRITO", '<i class="fa-solid fa-cart-shopping"></i> Carrito');
 define("ICON_PEDIDOS", '<i class="fa-solid fa-clipboard-list"></i> Pedidos');
-define("ICON_HISTORIAL_COMPRAS", '<i class="fa-solid fa-bag-shopping"></i> Historial de compras');
+define("ICON_HISTORIAL_COMPRAS", '<i class="fa-solid fa-bag-shopping"></i> Compras');

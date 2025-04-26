@@ -1,3 +1,108 @@
+/**
+ * Función para obtener los items actuales del carrito en el formato que espera MercadoPago
+ */
+function obtenerItemsParaMercadoPago() {
+  const items = [];
+  document.querySelectorAll(".producto-carrito").forEach((row) => {
+    const id = row.dataset.id_producto;
+    const title = row.querySelector(".nombre-producto").textContent;
+    const quantity = Number(row.querySelector(".input-cantidad").value);
+    const unit_price = Number(
+      row.querySelector(".precio-unitario").dataset.precio
+    );
+    items.push({
+      id,
+      title,
+      quantity,
+      unit_price,
+      currency_id: "MXN",
+    });
+  });
+  return items;
+}
+
+/**
+ * Función para actualizar el botón de MercadoPago con la preferencia actualizada
+ */
+async function actualizarBotonMercadoPago() {
+  const items = obtenerItemsParaMercadoPago();
+  const $walletContainer = document.getElementById("wallet_container");
+  if (items.length === 0) {
+    $walletContainer.innerHTML = "";
+    return;
+  }
+  const response = await fetch(
+    `${$walletContainer.dataset.url}controller/actualizarBtnMercadoPago.php`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items }),
+    }
+  );
+  const data = await response.json();
+  if (data.preferenceId) {
+    $walletContainer.innerHTML = "";
+    const mp = new MercadoPago($walletContainer.dataset.mp_public_key, {
+      locale: "es-MX",
+    });
+    mp.bricks().create("wallet", "wallet_container", {
+      initialization: {
+        preferenceId: data.preferenceId,
+        redirectMode: "redirect", // Cambiado de "modal" a "redirect"
+      },
+      customization: {
+        theme: "dark",
+      },
+    });
+  } else {
+    console.error(
+      "Error al actualizar MercadoPago:",
+      data.error || "Desconocido"
+    );
+  }
+}
+
+/**
+ * Detecta el estado del pago en la URL y muestra el SweetAlert correspondiente.
+ * Limpia el parámetro de la URL después de mostrar el mensaje.
+ */
+function mostrarAlertaEstadoPago() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const estadoPago = urlParams.get("estado_pago");
+
+  if (estadoPago === "success") {
+    Swal.fire({
+      icon: "success",
+      title: "¡Pago realizado!",
+      text: "Tu pago fue aprobado correctamente.",
+    }).then(() => {
+      // Opcional: limpiar el carrito aquí si lo deseas
+      // window.location.href = "carrito.php"; // Si quieres recargar sin el parámetro
+    });
+  } else if (estadoPago === "failure") {
+    Swal.fire({
+      icon: "error",
+      title: "Pago rechazado",
+      text: "Tu pago fue rechazado. Intenta nuevamente.",
+    });
+  } else if (estadoPago === "pending") {
+    Swal.fire({
+      icon: "info",
+      title: "Pago pendiente",
+      text: "Tu pago está pendiente de confirmación.",
+    });
+  }
+
+  // Limpia el parámetro de la URL para evitar mostrar la alerta al recargar
+  if (estadoPago) {
+    urlParams.delete("estado_pago");
+    const newUrl =
+      window.location.pathname +
+      (urlParams.toString() ? "?" + urlParams.toString() : "");
+    window.history.replaceState({}, document.title, newUrl);
+  }
+}
+
 async function actualizarCantidad(
   nuevaCantidad,
   id_producto,
@@ -32,6 +137,8 @@ async function actualizarCantidad(
       cbActualizarFrontend(json);
       const $totalCompra = document.getElementById("total-compra");
       $totalCompra.textContent = formatearMXN(json.total);
+      // Actualizar MercadoPago
+      actualizarBotonMercadoPago();
       desaparecerLoader();
     }
   } catch (err) {
@@ -121,7 +228,14 @@ document.querySelectorAll(".btn-eliminar").forEach((btn) => {
           const $totalCompra = document.getElementById("total-compra");
           $totalCompra.textContent = formatearMXN(json.total);
         }
+        // Actualizar MercadoPago
+        actualizarBotonMercadoPago();
       }
     );
   });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarAlertaEstadoPago(); // Mostrar alerta según el estado de pago en la URL
+  actualizarBotonMercadoPago();
 });

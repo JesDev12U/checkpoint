@@ -93,6 +93,8 @@ CREATE TABLE pedidos(
   fecha date not null,
   hora time not null,
   total double not null,
+  mp_payment_id VARCHAR(32) NULL,
+  estado_pago VARCHAR(20) DEFAULT 'pending',
   pendiente boolean not null,
   cancelado boolean not null,
   FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)

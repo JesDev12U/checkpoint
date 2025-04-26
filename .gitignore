@@ -1,6 +1,7 @@
 .qodo
 .vscode
 *.env
+logs/*.log
 web.config
 uploads/fotos_users/*.jpg
 uploads/fotos_users/*.jpeg

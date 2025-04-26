@@ -56,7 +56,7 @@ class CtrlPaginaPrincipal
   private $js = __DIR__ . "/../js/principal.js";
   public $model;
   public $opciones = [
-    ["nombre" => ICON_PEDIDOS, "href" => "#", "id" => "pedidos"],
+    ["nombre" => ICON_PEDIDOS, "href" => SITE_URL . RUTA_CLIENTE . RUTA_PEDIDOS, "id" => "pedidos"],
     ["nombre" => ICON_HISTORIAL_COMPRAS, "href" => "#", "id" => "historial-compras"],
     ["nombre" => ICON_CARRITO, "href" => SITE_URL . RUTA_CLIENTE . RUTA_CARRITO, "id" => "carrito"],
     ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_CLIENTE . RUTA_CUENTA, "id" => "cuenta"],

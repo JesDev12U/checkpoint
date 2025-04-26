@@ -58,6 +58,16 @@ class CtrlCarrito
     );
   }
 
+  public static function obtenerRegistros($id_cliente)
+  {
+    $model = new Model();
+    return $model->seleccionaRegistros(
+      "carrito",
+      ["*"],
+      "id_cliente=$id_cliente"
+    );
+  }
+
   public function obtenerProductosByIdProducto($id_producto)
   {
     $model = new Model();
@@ -87,6 +97,16 @@ class CtrlCarrito
       "carrito",
       ["SUM(total) AS total"],
       "id_cliente=" . $this->id_cliente
+    )[0]["total"];
+  }
+
+  public static function calcularTotalStatic($id_cliente)
+  {
+    $model = new Model();
+    return $model->seleccionaRegistros(
+      "carrito",
+      ["SUM(total) AS total"],
+      "id_cliente=" . $id_cliente
     )[0]["total"];
   }
 
@@ -189,6 +209,15 @@ class CtrlCarrito
     return $model->eliminaRegistro(
       "carrito",
       "id_producto = $id_producto AND id_cliente = " . $this->id_cliente
+    );
+  }
+
+  public static function limpiarCarrito($id_cliente)
+  {
+    $model = new Model();
+    return $model->eliminaRegistro(
+      "carrito",
+      "id_cliente=" . $id_cliente,
     );
   }
 }

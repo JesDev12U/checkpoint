@@ -25,6 +25,8 @@
   <style>
     <?php $ctrl->renderCSS() ?>
   </style>
+  <!-- SDK de Mercado Pago -->
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 
 <body>

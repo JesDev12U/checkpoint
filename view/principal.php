@@ -4,7 +4,7 @@ require_once __DIR__ . "/../controller/renderProductosPrincipal.php";
 <header class="minecraft-header py-4 mb-4 shadow">
   <div class="container text-center">
     <!-- <h1 class="minecraft-title mb-1" style="font-size:2.5rem;">Checkpoint</h1> -->
-    <img src="img/logo3.png" alt="Logo" width="400" height="100">
+    <img src="img/logo3.png" alt="Logo" style="width: 30%;">
     <p class="lead mb-0" style="color:#3e5c14;">¡Tu tienda gamer favorita!</p>
   </div>
 </header>

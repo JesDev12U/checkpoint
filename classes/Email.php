@@ -2,12 +2,14 @@
 require_once __DIR__ . "/../model/Model.php";
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Ajusta la ruta si tu .env está en otro lugar
+$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
 $dotenv->load();
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Email
 {
   public $email;

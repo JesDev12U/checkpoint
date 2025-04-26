@@ -22,21 +22,23 @@
             <tbody>
               <?php $ordinal = 0 ?>
               <?php foreach ($this->productos as $producto): ?>
-                <tr>
+                <tr class="producto-carrito" data-id_producto="<?php echo $producto["id_producto"]; ?>">
                   <td>
                     <img src="<?php echo $producto["foto_path"] ?>" class="img-thumbnail img-producto" alt="Producto">
                   </td>
                   <td>
-                    <strong><?php echo $producto["nombre"] ?></strong><br>
+                    <strong class="nombre-producto"><?php echo $producto["nombre"] ?></strong><br>
                     <small class="text-muted"><?php echo $producto["descripcion"] ?></small>
                   </td>
-                  <td class="monetario"><?php echo $producto["precio"] ?></td>
+                  <td class="precio-unitario monetario" data-precio="<?php echo $producto["precio"]; ?>">
+                    <?php echo $producto["precio"] ?>
+                  </td>
                   <td>
                     <div class="input-group input-group-sm flex-nowrap justify-content-center" style="width: auto;">
                       <button class="btn btn-outline-secondary px-2 btn-menos" data-url="<?php echo SITE_URL ?>" data-id_producto="<?php echo $producto["id_producto"] ?>" type="button"><i class="fas fa-minus"></i></button>
                       <input
                         type="number"
-                        class="form-control text-center px-1"
+                        class="form-control text-center px-1 input-cantidad"
                         id="input-cantidad<?php echo $producto["id_producto"] ?>"
                         value="<?php echo $producto["cantidad"] ?>"
                         min="1"
@@ -65,10 +67,10 @@
             <ul class="list-group list-group-flush mb-3">
               <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
                 Total
-                <span id="total-compra" class="monetario"><?php echo $this->calcularTotal() ?></span>
+                <span id="total-compra" data-total="<?php echo $this->calcularTotal() ?>" class="monetario"><?php echo $this->calcularTotal() ?></span>
               </li>
             </ul>
-            <button class="btn btn-success w-100 mb-2"><i class="fas fa-credit-card"></i> Finalizar compra</button>
+            <div id="wallet_container" data-url="<?php echo SITE_URL ?>" data-mp_public_key="<?php echo $_ENV["MERCADO_PAGO_PUBLIC_KEY"] ?>"></div>
             <a href="<?php echo SITE_URL ?>" class="btn btn-outline-primary w-100"><i class="fas fa-arrow-left"></i> Seguir comprando</a>
           </div>
         </div>
@@ -78,6 +80,3 @@
     <?php endif ?>
   </div>
 </div>
-<style>
-
-</style>
