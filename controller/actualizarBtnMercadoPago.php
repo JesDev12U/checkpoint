@@ -3,6 +3,7 @@
 ini_set('display_errors', E_ALL);
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/Global.php';
+require_once __DIR__ . "/cliente/carrito/CtrlCarrito.php";
 session_start();
 
 use Dotenv\Dotenv;
@@ -18,20 +19,12 @@ MercadoPagoConfig::setAccessToken($_ENV["MERCADO_PAGO_SECRET_KEY"]);
 
 header('Content-Type: application/json');
 
-// Recibe el carrito por POST (JSON)
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (!isset($data['items']) || !is_array($data['items'])) {
-  http_response_code(400);
-  echo json_encode(['error' => 'Datos inválidos']);
-  exit;
-}
-
 $client = new PreferenceClient();
 
 try {
+  // Obtener items directo del carrito
   $preference = $client->create([
-    "items" => $data['items'],
+    "items" => CtrlCarrito::obtenerProductosMercadoPago($_SESSION["datos"]["id_cliente"]),
     "statement_descriptor" => "Checkpoint Game Store",
     "external_reference" => $_SESSION["datos"]["id_cliente"],
     "back_urls" => [

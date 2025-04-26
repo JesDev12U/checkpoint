@@ -58,6 +58,24 @@ class CtrlCarrito
     );
   }
 
+  public static function obtenerProductosMercadoPago($id_cliente)
+  {
+    $model = new Model();
+    $productos = $model->seleccionaRegistros(
+      "carrito",
+      [
+        "carrito.id_producto AS id",
+        "productos.nombre AS title",
+        "productos.precio AS unit_price",
+        "carrito.cantidad AS quantity",
+      ],
+      "carrito.id_cliente = " . $id_cliente,
+      null,
+      "INNER JOIN productos ON carrito.id_producto = productos.id_producto"
+    );
+    return $productos;
+  }
+
   public static function obtenerRegistros($id_cliente)
   {
     $model = new Model();

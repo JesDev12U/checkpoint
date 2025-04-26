@@ -1,43 +1,10 @@
 /**
- * Función para obtener los items actuales del carrito en el formato que espera MercadoPago
- */
-function obtenerItemsParaMercadoPago() {
-  const items = [];
-  document.querySelectorAll(".producto-carrito").forEach((row) => {
-    const id = row.dataset.id_producto;
-    const title = row.querySelector(".nombre-producto").textContent;
-    const quantity = Number(row.querySelector(".input-cantidad").value);
-    const unit_price = Number(
-      row.querySelector(".precio-unitario").dataset.precio
-    );
-    items.push({
-      id,
-      title,
-      quantity,
-      unit_price,
-      currency_id: "MXN",
-    });
-  });
-  return items;
-}
-
-/**
  * Función para actualizar el botón de MercadoPago con la preferencia actualizada
  */
 async function actualizarBotonMercadoPago() {
-  const items = obtenerItemsParaMercadoPago();
   const $walletContainer = document.getElementById("wallet_container");
-  if (items.length === 0) {
-    $walletContainer.innerHTML = "";
-    return;
-  }
   const response = await fetch(
-    `${$walletContainer.dataset.url}controller/actualizarBtnMercadoPago.php`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items }),
-    }
+    `${$walletContainer.dataset.url}controller/actualizarBtnMercadoPago.php`
   );
   const data = await response.json();
   if (data.preferenceId) {
@@ -75,9 +42,6 @@ function mostrarAlertaEstadoPago() {
       icon: "success",
       title: "¡Pago realizado!",
       text: "Tu pago fue aprobado correctamente.",
-    }).then(() => {
-      // Opcional: limpiar el carrito aquí si lo deseas
-      // window.location.href = "carrito.php"; // Si quieres recargar sin el parámetro
     });
   } else if (estadoPago === "failure") {
     Swal.fire({
