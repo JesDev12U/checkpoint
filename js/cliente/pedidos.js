@@ -13,3 +13,26 @@ document.querySelectorAll(".tab").forEach((tab) => {
       .classList.add("active");
   });
 });
+
+document.querySelectorAll(".btn-cancelar").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    asyncConfirmProcess(
+      JSON.stringify({
+        id_pedido: this.dataset.id_pedido,
+        operacion: "cancelar_pedido",
+      }),
+      `${this.dataset.url}/controller/empleado/gestor_pedidos/AsyncPedidos.php`,
+      "Advertencia",
+      "¿Está seguro de cancelar este pedido?",
+      "Éxito",
+      (_) => {
+        setTimeout(
+          () =>
+            (location.href = `${this.dataset.url}${this.dataset.url_pedidos}`),
+          2000
+        );
+      }
+    );
+  });
+});

@@ -28,6 +28,7 @@ define("RUTA_MTO_CLIENTES", "mto-clientes/");
 // ** RUTAS DEL EMPLEADO **
 define("RUTA_GESTOR_PRODUCTOS", "gestor-productos/");
 define("RUTA_MTO_PRODUCTOS", "mto-productos/");
+define("RUTA_GESTOR_PEDIDOS", "gestor-pedidos/");
 
 // ** RUTAS DEL CLIENTE **
 define("RUTA_CARRITO", "carrito/");

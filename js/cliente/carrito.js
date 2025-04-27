@@ -15,7 +15,7 @@ async function actualizarBotonMercadoPago() {
     mp.bricks().create("wallet", "wallet_container", {
       initialization: {
         preferenceId: data.preferenceId,
-        redirectMode: "redirect", // Cambiado de "modal" a "redirect"
+        redirectMode: "self",
       },
       customization: {
         theme: "dark",
@@ -25,6 +25,11 @@ async function actualizarBotonMercadoPago() {
     console.error(
       "Error al actualizar MercadoPago:",
       data.error || "Desconocido"
+    );
+    setTimeout(
+      () =>
+        (location.href = `${$walletContainer.dataset.url}${$walletContainer.dataset.url_cliente}${$walletContainer.dataset.url_carrito}`),
+      2000
     );
   }
 }

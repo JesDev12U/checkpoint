@@ -56,14 +56,40 @@
               <td>
                 <span class="monetario"><?= htmlspecialchars($pedido["total"]) ?></span>
                 <button
-                  class="btn-cancelar"
-                  title="Cancelar pedido"
+                  class="btn-tomar-pedido"
                   data-url="<?= SITE_URL ?>"
-                  data-url_pedidos="<?= RUTA_CLIENTE . RUTA_PEDIDOS ?>"
-                  data-id_pedido="<?= $pedido["id_pedido"] ?>">
+                  data-url_gestor_pedidos="<?= RUTA_EMPLEADO . RUTA_GESTOR_PEDIDOS ?>"
+                  data-id_pedido="<?= $pedido["id_pedido"] ?>"
+                  title="Tomar pedido">
+                  <i class="fa-solid fa-check"></i> Tomar pedido
+                </button>
+                <button
+                  data-url="<?= SITE_URL ?>"
+                  data-url_gestor_pedidos="<?= RUTA_EMPLEADO . RUTA_GESTOR_PEDIDOS ?>"
+                  data-id_pedido="<?= $pedido["id_pedido"] ?>"
+                  class="btn-cancelar"
+                  title="Cancelar pedido">
                   <i class="fas fa-times-circle"></i> Cancelar pedido
                 </button>
               </td>
+            </tr>
+            <tr class="pedido-total-row">
+              <td colspan="6" style="text-align:right;">Entregar en:</td>
+              <td><?=
+                  $pedido["codigo_postal"]
+                    . " - "
+                    . $pedido["calle"]
+                    . " "
+                    . $pedido["no_ext"]
+                    . " "
+                    . $pedido["no_int"]
+                    . ", "
+                    . $pedido["colonia"]
+                    . ", "
+                    . $pedido["alc_mun"]
+                    . ", "
+                    . $pedido["estado_domicilio"]
+                  ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -123,17 +149,48 @@
                   class="btn-cancelar"
                   title="Cancelar pedido"
                   data-url="<?= SITE_URL ?>"
-                  data-url_pedidos="<?= RUTA_CLIENTE . RUTA_PEDIDOS ?>"
+                  data-url_gestor_pedidos="<?= RUTA_EMPLEADO . RUTA_GESTOR_PEDIDOS ?>"
                   data-id_pedido="<?= $pedido["id_pedido"] ?>">
                   <i class="fas fa-times-circle"></i> Cancelar pedido
                 </button>
               </td>
             </tr>
             <tr class="pedido-total-row">
-              <td colspan="6" style="text-align:right;">El empleado <?= $pedido['id_empleado'] ?> tomó tu pedido</td>
+              <td colspan="6" style="text-align:right;">Estado</td>
               <td>
-                Estado: <?= $pedido['estado'] ?>
+                <select name="estado" id="pedidos-atendidos-<?= $pedido["id_pedido"] ?>">
+                  <option value="Pedido recién atendido" <?= $pedido['estado'] == "Pedido recién atendido" ? "selected" : "" ?>>Pedido recién atendido</option>
+                  <option value="Procesando y empaquetando" <?= $pedido['estado'] == "Procesando y empaquetando" ? "selected" : "" ?>>Procesando y empaquetando</option>
+                  <option value="En camino" <?= $pedido['estado'] == "En camino" ? "selected" : "" ?>>En camino</option>
+                  <option value="Completado">Completado</option>
+                </select>
+                <button
+                  data-url="<?= SITE_URL ?>"
+                  data-id_pedido="<?= $pedido["id_pedido"] ?>"
+                  class="btn-actualizar-estado"
+                  title="Actualizar estado"
+                  data-url_gestor_pedidos="<?= RUTA_EMPLEADO . RUTA_GESTOR_PEDIDOS ?>">
+                  <i class="fa-solid fa-pencil"></i> Actualizar estado
+                </button>
               </td>
+            </tr>
+            <tr class="pedido-total-row">
+              <td colspan="6" style="text-align:right;">Entregar en:</td>
+              <td><?=
+                  $pedido["codigo_postal"]
+                    . " - "
+                    . $pedido["calle"]
+                    . " "
+                    . $pedido["no_ext"]
+                    . " "
+                    . $pedido["no_int"]
+                    . ", "
+                    . $pedido["colonia"]
+                    . ", "
+                    . $pedido["alc_mun"]
+                    . ", "
+                    . $pedido["estado_domicilio"]
+                  ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -190,6 +247,24 @@
               <td>
                 <span class="monetario"><?= htmlspecialchars($pedido["total"]) ?></span>
               </td>
+            </tr>
+            <tr class="pedido-total-row">
+              <td colspan="6" style="text-align:right;">Entregado en:</td>
+              <td><?=
+                  $pedido["codigo_postal"]
+                    . " - "
+                    . $pedido["calle"]
+                    . " "
+                    . $pedido["no_ext"]
+                    . " "
+                    . $pedido["no_int"]
+                    . ", "
+                    . $pedido["colonia"]
+                    . ", "
+                    . $pedido["alc_mun"]
+                    . ", "
+                    . $pedido["estado_domicilio"]
+                  ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

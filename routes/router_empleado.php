@@ -32,6 +32,10 @@ switch ($action) {
       $ctrl = new CtrlError404();
     }
     break;
+  case rtrim(RUTA_GESTOR_PEDIDOS, "/"):
+    require_once __DIR__ . "/../controller/empleado/gestor_pedidos/CtrlGestorPedidos.php";
+    $ctrl = new CtrlGestorPedidos();
+    break;
   default:
     // Página no encontrada
     require_once __DIR__ . "/../controller/errors/CtrlError404.php";

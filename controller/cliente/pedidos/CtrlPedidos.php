@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../../../model/Model.php";
 require_once __DIR__ . "/../../../config/Global.php";
 require_once __DIR__ . "/../../cliente/carrito/CtrlCarrito.php";
+require_once __DIR__ . "/../../../classes/Email.php";
 
 class CtrlPedidos
 {
@@ -98,7 +99,7 @@ class CtrlPedidos
         "estado_pedidos.id_empleado",
         "estado_pedidos.estado"
       ],
-      "pedidos.pendiente = 0 AND pedidos.cancelado = 0 AND pedidos.id_cliente = " . $this->id_cliente,
+      "estado_pedidos.estado <> 'Completado' AND pedidos.pendiente = 0 AND pedidos.cancelado = 0 AND pedidos.id_cliente = " . $this->id_cliente,
       null,
       "INNER JOIN estado_pedidos ON pedidos.id_pedido = estado_pedidos.id_pedido"
     );
@@ -116,10 +117,11 @@ class CtrlPedidos
         "detalle_pedidos.cantidad",
         "detalle_pedidos.importe"
       ],
-      "pedidos.pendiente = 0 AND pedidos.cancelado = 0 AND pedidos.id_cliente = " . $this->id_cliente,
+      "estado_pedidos.estado <> 'Completado' AND pedidos.pendiente = 0 AND pedidos.cancelado = 0 AND pedidos.id_cliente = " . $this->id_cliente,
       null,
       "INNER JOIN detalle_pedidos ON pedidos.id_pedido = detalle_pedidos.id_pedido
-      INNER JOIN productos ON detalle_pedidos.id_producto = productos.id_producto"
+      INNER JOIN productos ON detalle_pedidos.id_producto = productos.id_producto
+      INNER JOIN estado_pedidos ON pedidos.id_pedido = estado_pedidos.id_pedido"
     );
   }
 
@@ -251,5 +253,13 @@ class CtrlPedidos
         ]
       );
     }
+    // Notificar al cliente via EMAIL
+    $email_cliente = $model->seleccionaRegistros(
+      "clientes",
+      ["email"],
+      "id_cliente = $id_cliente"
+    )[0]["email"];
+    $Email = new Email($email_cliente);
+    $Email->notificarPedidoPendiente($lastInsertID);
   }
 }
