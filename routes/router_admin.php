@@ -76,6 +76,10 @@ switch ($action) {
       $ctrl = new CtrlError404();
     }
     break;
+  case rtrim(RUTA_GESTOR_VENTAS, "/"):
+    require_once __DIR__ . "/../controller/admin/gestor_ventas/CtrlGestorVentas.php";
+    $ctrl = new CtrlGestorVentas();
+    break;
   case rtrim(RUTA_CUENTA, "/"):
     require_once __DIR__ . "/../controller/admin/gestor_administradores/CtrlMtoAdministradores.php";
     $ctrl = new CtrlMtoAdministradores("UPDATE", $_SESSION["datos"]["id_admin"], false);

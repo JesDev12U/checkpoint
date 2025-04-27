@@ -23,6 +23,12 @@
       </a>
     </div>
     <div class="col">
+      <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR . RUTA_GESTOR_VENTAS ?>">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_ventas.png" alt="Gestor de ventas">
+        <p>Gestor de ventas</p>
+      </a>
+    </div>
+    <div class="col">
       <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR . RUTA_CUENTA ?>">
         <img src="<?php echo SITE_URL ?>img/menu_icons/cuenta.png" alt="Configuración de la cuenta">
         <p>Configuración de la cuenta</p>

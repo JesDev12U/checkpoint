@@ -24,6 +24,7 @@ define("RUTA_GESTOR_ADMINISTRADORES", "gestor-administradores/");
 define("RUTA_MTO_ADMINISTRADORES", "mto-administradores/");
 define("RUTA_MTO_EMPLEADOS", "mto-empleados/");
 define("RUTA_MTO_CLIENTES", "mto-clientes/");
+define("RUTA_GESTOR_VENTAS", "ventas/");
 
 // ** RUTAS DEL EMPLEADO **
 define("RUTA_GESTOR_PRODUCTOS", "gestor-productos/");
