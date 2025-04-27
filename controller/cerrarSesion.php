@@ -2,5 +2,6 @@
 session_start();
 session_unset();
 session_destroy();
-// TODO: Implementar cookies
+// Eliminar cookie de sesión persistente
+setcookie('session_data', '', time() - 3600, '/');
 header("Location: ../index.php");

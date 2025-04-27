@@ -10,6 +10,24 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+// Restaurar sesión desde cookie si corresponde
+if (
+  !isset($_SESSION["loggeado"]) &&
+  isset($_COOKIE['session_data']) &&
+  isset($_COOKIE['cookie_consent']) && $_COOKIE['cookie_consent'] === '1'
+) {
+  $cookieData = json_decode(base64_decode($_COOKIE['session_data']), true);
+  if (
+    $cookieData &&
+    isset($cookieData['loggeado']) && $cookieData['loggeado'] === true &&
+    isset($cookieData['usuario']) && isset($cookieData['datos'])
+  ) {
+    $_SESSION["loggeado"] = true;
+    $_SESSION["usuario"] = $cookieData["usuario"];
+    $_SESSION["datos"] = $cookieData["datos"];
+  }
+}
+
 // Capturar los parámetros de la URL
 $page = null;
 if (isset($_GET['page'])) {

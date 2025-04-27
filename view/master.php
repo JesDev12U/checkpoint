@@ -37,7 +37,23 @@
       color="black"></l-tail-chase>
     <h3>Cargando, espere un momento...</h3>
   </div>
-
+  <?php if (!isset($_COOKIE['cookie_consent'])): ?>
+    <div id="cookie-consent-banner" style="position:fixed;bottom:0;left:0;right:0;background:#222;color:#fff;padding:16px;z-index:9999;text-align:center;">
+      Este sitio utiliza cookies para mejorar su experiencia.
+      <button id="accept-cookies" style="margin-left:10px;">Aceptar</button>
+      <button id="reject-cookies" style="margin-left:10px;">Rechazar</button>
+    </div>
+    <script>
+      document.getElementById('accept-cookies').onclick = function() {
+        document.cookie = "cookie_consent=1; path=/; max-age=" + (60 * 60 * 24 * 365);
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+      };
+      document.getElementById('reject-cookies').onclick = function() {
+        document.cookie = "cookie_consent=0; path=/; max-age=" + (60 * 60 * 24 * 365);
+        document.getElementById('cookie-consent-banner').style.display = 'none';
+      };
+    </script>
+  <?php endif; ?>
   <!-- Navbar superior mejorado -->
   <nav class="navbar navbar-expand-lg shadow-sm fixed-top py-0 sticky-top">
     <div class="container-fluid">

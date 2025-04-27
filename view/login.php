@@ -28,6 +28,12 @@
           </div>
           <span id="error-password" class="span-errors hidden">La contraseña no puede ser vacía</span>
         </div>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="remember_me" name="remember_me" checked>
+          <label class="form-check-label" for="remember_me">
+            Recuérdame
+          </label>
+        </div>
         <div class="mb-3 text-end login-links">
           <a href="<?php echo SITE_URL . RUTA_CREAR_CUENTA ?>"><i class="fa-solid fa-user-plus"></i> ¿No tienes cuenta? Crea una</a>
         </div>

@@ -118,6 +118,26 @@ switch ($peticion) {
             $_SESSION["datos"]["email"] = $email;
             $_SESSION["datos"]["telefono"] = $telefono;
             if ($foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
+            if (
+              isset($_COOKIE['cookie_consent'])
+              && $_COOKIE['cookie_consent'] === '1'
+              && isset($_COOKIE["session_data"])
+            ) {
+              $cookieData = [
+                "loggeado" => true,
+                "usuario" => $_SESSION["usuario"],
+                "datos" => $_SESSION["datos"]
+              ];
+              setcookie(
+                "session_data",
+                base64_encode(json_encode($cookieData)),
+                time() + (86400 * 30), // 30 días
+                "/",
+                "",
+                false,
+                true // httponly
+              );
+            }
           }
           echo json_encode(
             [
