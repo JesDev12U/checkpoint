@@ -6,19 +6,19 @@
   <div class="row">
     <div class="col">
       <a href="<?php echo SITE_URL . RUTA_EMPLEADO . RUTA_GESTOR_PRODUCTOS ?>">
-        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_productos.png" alt="Gestor de productos">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_productos.jpg" alt="Gestor de productos">
         <p>Gestor de productos</p>
       </a>
     </div>
     <div class="col">
       <a href="<?php echo SITE_URL . RUTA_EMPLEADO . RUTA_GESTOR_PEDIDOS ?>">
-        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_pedidos.png" alt="Gestor de productos">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_pedidos.jpg" alt="Gestor de productos">
         <p>Gestor de pedidos</p>
       </a>
     </div>
     <div class="col">
       <a href="<?php echo SITE_URL . RUTA_EMPLEADO . RUTA_CUENTA ?>">
-        <img src="<?php echo SITE_URL ?>img/menu_icons/cuenta.png" alt="Configuración de la cuenta">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/cuenta.jpg" alt="Configuración de la cuenta">
         <p>Configuración de la cuenta</p>
       </a>
     </div>
