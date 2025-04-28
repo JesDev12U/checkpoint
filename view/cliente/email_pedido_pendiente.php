@@ -9,14 +9,14 @@
       <th>Imagen</th>
       <th>Producto</th>
       <th>Cantidad</th>
-      <th>Importe</th>
+      <th>Subtotal</th>
     </tr>
   </thead>
   <tbody>
     <?php
     $total = 0;
     foreach ($ticket as $item):
-      $total += $item['importe'] * $item['cantidad'];
+      $total += $item['importe'];
     ?>
       <tr>
         <td>
