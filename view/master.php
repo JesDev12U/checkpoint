@@ -38,10 +38,14 @@
     <h3>Cargando, espere un momento...</h3>
   </div>
   <?php if (!isset($_COOKIE['cookie_consent'])): ?>
-    <div id="cookie-consent-banner" style="position:fixed;bottom:0;left:0;right:0;background:#222;color:#fff;padding:16px;z-index:9999;text-align:center;">
-      Este sitio utiliza cookies para mejorar su experiencia.
-      <button id="accept-cookies" style="margin-left:10px;">Aceptar</button>
-      <button id="reject-cookies" style="margin-left:10px;">Rechazar</button>
+    <div id="cookie-consent-banner">
+      <span>
+        Este sitio utiliza cookies para mejorar su experiencia.
+      </span>
+      <div>
+        <button id="accept-cookies">Aceptar</button>
+        <button id="reject-cookies">Rechazar</button>
+      </div>
     </div>
     <script>
       document.getElementById('accept-cookies').onclick = function() {
