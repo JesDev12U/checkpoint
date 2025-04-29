@@ -267,13 +267,15 @@ class CtrlMtoProductos
       "carrito",
       ["cantidad"],
       "id_producto=$id_producto"
-    )[0]["cantidad"];
-    $model->modificaRegistro(
-      "carrito",
-      ["total"],
-      "id_producto=$id_producto",
-      [$cantidadProductoCarrito * $precioProducto]
     );
+    if (isset($cantidadProductoCarrito[0]["cantidad"])) {
+      $model->modificaRegistro(
+        "carrito",
+        ["total"],
+        "id_producto=$id_producto",
+        [$cantidadProductoCarrito[0]["cantidad"] * $precioProducto]
+      );
+    }
   }
 
   public function deshabilitarRegistro($id_producto)

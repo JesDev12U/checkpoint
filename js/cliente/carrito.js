@@ -43,6 +43,12 @@ function mostrarAlertaEstadoPago() {
   const estadoPago = urlParams.get("estado_pago");
 
   if (estadoPago === "success") {
+    if (document.getElementById("total-compra")) {
+      // No se borró el carrito de forma automática, eliminar de forma manual
+      document.querySelector(
+        ".row"
+      ).innerHTML = `<div class="alert alert-info">No hay productos para mostrar.</div>`;
+    }
     Swal.fire({
       icon: "success",
       title: "¡Pago realizado!",
