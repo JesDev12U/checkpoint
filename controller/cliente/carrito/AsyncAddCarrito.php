@@ -8,7 +8,7 @@ $input = file_get_contents("php://input");
 $data = json_decode($input, true);
 
 if (!isset($_SESSION) || count($_SESSION) === 0) {
-  echo json_encode(["result" => 0, "msg" => "¡Debes iniciar sesión para poder añadir productos al carrito!"]);
+  echo json_encode(["redirect" => true]);
   die();
 }
 

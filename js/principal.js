@@ -118,6 +118,10 @@ function loadEventAddCart() {
         }
         const json = await res.json();
         desaparecerLoader();
+        if (json.redirect) {
+          location.href = `${btn.dataset.url}${btn.dataset.url_login}`;
+          return;
+        }
         if (json.result !== 1) {
           Swal.fire({
             icon: "error",

@@ -34,14 +34,14 @@
             Recuérdame
           </label>
         </div>
+        <div class="d-grid gap-3" style="margin-bottom: 20px;">
+          <button id="btn-iniciar-sesion" class="btn btn-practical" disabled>Iniciar sesión</button>
+        </div>
         <div class="mb-3 text-end login-links">
           <a href="<?php echo SITE_URL . RUTA_CREAR_CUENTA ?>"><i class="fa-solid fa-user-plus"></i> ¿No tienes cuenta? Crea una</a>
         </div>
         <div class="mb-3 text-end login-links">
           <a href="<?php echo SITE_URL ?>recuperar-password"><i class="fa-solid fa-key"></i> ¿Haz olvidado la contraseña?</a>
-        </div>
-        <div class="d-grid gap-3">
-          <button id="btn-iniciar-sesion" class="btn btn-practical" disabled>Iniciar sesión</button>
         </div>
       </form>
     </div>

@@ -13,11 +13,11 @@ function renderProductosPrincipal($productos)
     return;
   }
 ?>
-  <div class="row g-4">
+  <div class="row">
     <?php foreach ($productos as $reg): ?>
       <?php if ($reg["estado"]): ?>
         <?php $count++ ?>
-        <div class="col-12 col-sm-6 col-md-4">
+        <div class="col-12 col-sm-8 col-md-6">
           <div class="card minecraft-card h-100">
             <img src="<?php echo htmlspecialchars($reg["foto_path"]) ?>" class="card-img-top product-img" alt="Minecraft PS5">
             <div class="card-body d-flex flex-column">
@@ -25,7 +25,7 @@ function renderProductosPrincipal($productos)
               <p class="card-text mb-2"><?php echo htmlspecialchars($reg["descripcion"]) ?></p>
               <div class="mt-auto">
                 <span class="fw-bold monetario" style="color:#5e8c31;"><?php echo htmlspecialchars($reg["precio"]) ?></span>
-                <button class="btn minecraft-btn btn-sm float-end btn-addcart" data-url="<?php echo SITE_URL ?>" data-id_producto="<?php echo $reg["id_producto"] ?>">
+                <button class="btn minecraft-btn btn-sm float-end btn-addcart" data-url="<?php echo SITE_URL ?>" data-url_login="<?= RUTA_LOGIN ?>" data-id_producto="<?php echo $reg["id_producto"] ?>">
                   <i class="fa-solid fa-cart-shopping"></i>&nbsp;Añadir al carrito
                 </button>
               </div>

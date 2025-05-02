@@ -1,14 +1,6 @@
 <?php
 require_once __DIR__ . "/../controller/renderProductosPrincipal.php";
 ?>
-<header class="minecraft-header py-4 mb-4 shadow">
-  <div class="container text-center">
-    <!-- <h1 class="minecraft-title mb-1" style="font-size:2.5rem;">Checkpoint</h1> -->
-    <img src="img/logo3.png" alt="Logo" style="width: 30%;">
-    <p class="lead mb-0" style="color:#3e5c14;">¡Tu tienda gamer favorita!</p>
-  </div>
-</header>
-
 
 <nav class="navbar navbar-expand-lg minecraft-navbar mb-4 sticky-top">
   <div class="container">
@@ -110,12 +102,16 @@ require_once __DIR__ . "/../controller/renderProductosPrincipal.php";
 </nav>
 
 <!-- Modal de búsqueda -->
-<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+<div class="modal fade minecraft-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="searchModalLabel">Buscar productos</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <!-- Botón de cerrar personalizado para modal Minecraft -->
+        <button type="button" class="btn-close minecraft-close" data-bs-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true" style="font-family: 'Press Start 2P', monospace; font-size: 1.2rem;">✖</span>
+        </button>
       </div>
       <div class="modal-body">
         <div class="input-group mb-3">

@@ -18,7 +18,10 @@ async function actualizarBotonMercadoPago() {
         redirectMode: "self",
       },
       customization: {
-        theme: "dark",
+        theme: "default",
+        customStyle: {
+          hideValueProp: true,
+        },
       },
     });
   } else {

@@ -69,8 +69,8 @@
                 class="form-control"
                 id="password"
                 name="password"
-                placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí una contraseña para el administrador" : "Ingresa aquí tu contraseña" ?>"
-                <?php echo !$this->mantenimiento ? "" : "disabled" ?> />
+                placeholder="<?php echo $this->mantenimiento ? "Ingresa aquí una contraseña para el administrador" : "Ingresa aquí tu nueva contraseña si la deseas cambiar" ?>"
+                <?php echo !$this->mantenimiento || $this->peticion === "INSERT" ? "" : "disabled" ?> />
               <button class="btn btn-outline-secondary" id="toggle-password" type="button">
                 <i class="fa-solid fa-eye"></i>
               </button>

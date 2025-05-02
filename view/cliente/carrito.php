@@ -63,19 +63,21 @@
       <div class="col-12 col-lg-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Resumen</h5>
+            <h4 class="card-title">Resumen</h4>
             <ul class="list-group list-group-flush mb-3">
               <li class="list-group-item d-flex justify-content-between align-items-center fw-bold">
                 Total
                 <span id="total-compra" data-total="<?php echo $this->calcularTotal() ?>" class="monetario"><?php echo $this->calcularTotal() ?></span>
               </li>
             </ul>
+            <h5><b>Métodos de pago</b></h5>
             <div
               id="wallet_container"
               data-url="<?php echo SITE_URL ?>"
               data-url_cliente="<?php echo RUTA_CLIENTE ?>"
               data-url_carrito="<?php echo RUTA_CARRITO ?>"
               data-mp_public_key="<?php echo $_ENV["MERCADO_PAGO_PUBLIC_KEY"] ?>"></div>
+            <hr>
             <a href="<?php echo SITE_URL ?>" class="btn btn-outline-primary w-100"><i class="fas fa-arrow-left"></i> Seguir comprando</a>
           </div>
         </div>
