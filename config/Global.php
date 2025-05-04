@@ -6,7 +6,7 @@ set_include_path(
     PATH_SEPARATOR . realpath(__DIR__ . '/..') . '/classes'
 );
 
-define("SITE_URL", "https://fresh-direct-eagle.ngrok-free.app/checkpoint/");
+define("SITE_URL", "https://checkpointstore.duckdns.org/");
 
 // ** RUTAS GENERALES **
 define("RUTA_EMPLEADO", "empleado/");

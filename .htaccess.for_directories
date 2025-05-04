@@ -1,13 +1,13 @@
 RewriteEngine On
-RewriteBase /
+RewriteBase /checkpoint/
 
 # Redirigir cualquier URL con un '/' final opcional al mismo sin el '/'
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/index\.php
-RewriteRule ^(.+)/$ /$1 [R=301,L]
+RewriteCond %{REQUEST_URI} !^/checkpoint/index\.php
+RewriteRule ^(.+)/$ /checkpoint/$1 [R=301,L]
 
 # Excluir carpetas necesarias
-RewriteCond %{REQUEST_URI} ^/(css|js|img|fonts|controller|uploads|hooks)/ [NC]
+RewriteCond %{REQUEST_URI} ^/checkpoint/(css|js|img|fonts|controller|uploads|hooks)/ [NC]
 RewriteRule ^ - [L]
 
 # Excluir archivos existentes para evitar redirección
