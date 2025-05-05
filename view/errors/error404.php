@@ -4,6 +4,6 @@
     <p class="lead">
       El recurso que estás buscando no existe :(
     </p>
-    <a href="/checkpoint" class="btn btn-primary">Ir a la página principal</a>
+    <a href="/" class="btn btn-primary">Ir a la página principal</a>
   </div>
 </div>

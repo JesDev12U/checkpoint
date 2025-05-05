@@ -158,7 +158,7 @@
         <hr>
         <img src="img/logo3.png" alt="Logo" width="200" height="70">
         <p class="mt-2 mb-0">
-          Calle Paseo de Lomas Turbas 123, Colonia Lomas de Chapultepec, Alcaldía Miguel Hidalgo, Ciudad de México, C.P. 11000, México
+          Calle Paseo de Lomas Palmas 123, Colonia Lomas de Chapultepec, Alcaldía Miguel Hidalgo, Ciudad de México, C.P. 11000, México
         </p>
         <div class="copyright mt-2">
           &copy; <?php echo date('Y'); ?> Checkpoint - Tu tienda de videojuegos con espíritu Minecraft.
